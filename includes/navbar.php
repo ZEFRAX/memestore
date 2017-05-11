@@ -19,8 +19,12 @@
 
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    <span class="glyphicon glyphicon-user"></span>&nbsp;Hi' <?php echo $userRow['userEmail']; ?>&nbsp;<span class="caret"></span></a>
+    <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Login";}?>&nbsp;<span class="caret"></span></a>
              <ul class="dropdown-menu">
+               <?php if ($userRow['userStat'] == '1') { echo "<li><a href='index.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Kontrollpanel</a></li>";} ?>
+
+               <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='index.php'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Sign in</a></li>"; } ?>
+
                <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
              </ul>
            </li>

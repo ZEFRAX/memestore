@@ -4,10 +4,13 @@
  require_once 'includes/dbConnect.php';
 
  // it will never let you open index(login) page if session is set
+
  if ( isset($_SESSION['user'])!="" ) {
   header("Location: home.php");
   exit;
  }
+
+
 
  $error = false;
 
@@ -55,6 +58,15 @@
   }
 
  }
+
+
+ if (isset($_GET['success'])) {
+   $succMSG = "Success creating account, Please login below!";
+
+ }
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,18 +93,36 @@
              <hr />
             </div>
 
+<!--success message -->
             <?php
    if ( isset($errMSG) ) {
+
 
     ?>
     <div class="form-group">
              <div class="alert alert-danger">
     <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                 </div>
-             </div>
-                <?php
-   }
-   ?>
+             </div><?php
+           }
+?>
+
+    <?php
+if ( isset($succMSG) ) {
+
+
+?>
+<div class="form-group">
+     <div class="alert alert-success">
+<span class="glyphicon glyphicon-info-sign"></span> <?php echo $succMSG; ?>
+        </div>
+     </div>
+
+<?php
+}
+?>
+<!--success message END -->
+
 
             <div class="form-group">
              <div class="input-group">
@@ -135,4 +165,6 @@
 
 </body>
 </html>
+
+
 <?php ob_end_flush(); ?>

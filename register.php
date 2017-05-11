@@ -30,7 +30,7 @@
   } else if (strlen($name) < 3) {
    $error = true;
    $nameError = "Name must have atleat 3 characters.";
-  } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+ } else if (!preg_match("/^[a-zA-Z ÆØÅæøå]+$/",$name)) {
    $error = true;
    $nameError = "Name must contain alphabets and space.";
   }
@@ -53,7 +53,7 @@
   if (empty($pass)){
    $error = true;
    $passError = "Please enter password.";
-  } else if(strlen($pass) < 6) {
+ } else if(strlen($pass) < 1) {
    $error = true;
    $passError = "Password must have atleast 6 characters.";
   }
@@ -73,6 +73,7 @@
     unset($name);
     unset($email);
     unset($pass);
+    header("Location: index.php?success");
    } else {
     $errTyp = "danger";
     $errMSG = "Something went wrong, try again later...";
@@ -170,4 +171,5 @@
 
 </body>
 </html>
+
 <?php ob_end_flush(); ?>
