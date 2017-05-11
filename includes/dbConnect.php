@@ -7,7 +7,7 @@
  define('DBHOST', 'localhost');
  define('DBUSER', 'root');
  define('DBPASS', '');
- define('DBNAME', 'dbtest');
+ define('DBNAME', 'memestore');
 
  $conn = mysql_connect(DBHOST,DBUSER,DBPASS);
  $dbcon = mysql_select_db(DBNAME);
