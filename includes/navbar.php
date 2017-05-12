@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default navbar-fixed-top">
      <div class="container">
        <div class="navbar-header">
@@ -7,7 +8,7 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#">Coding Cage</a>
+         <a class="navbar-brand" href="home.php">Coding Cage</a>
        </div>
        <div id="navbar" class="navbar-collapse collapse">
          <ul class="nav navbar-nav">
@@ -15,17 +16,16 @@
            <li><a href="#">jQuery</a></li>
            <li><a href="#">PHP</a></li>
          </ul>
+         <!-- Navbar dropdown meny-->
          <ul class="nav navbar-nav navbar-right">
-
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
     <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Login";}?>&nbsp;<span class="caret"></span></a>
              <ul class="dropdown-menu">
-               <?php if ($userRow['userStat'] == '1') { echo "<li><a href='index.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Kontrollpanel</a></li>";} ?>
-
-               <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='index.php'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Sign in</a></li>"; } ?>
-
-               <li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
+               <!-- Dynamic buttons based on user session -->
+               <?php if ($userRow['userStat'] == '1') { echo "<li><a href='Kontrollpanel.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Kontrollpanel</a></li>";} ?>
+               <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='index.php'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Sign in</a></li>"; } ?>
+               <?php if( isset($_SESSION['user']) ) { echo "<li><a href='logout.php?logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>"; } ?>
              </ul>
            </li>
          </ul>
