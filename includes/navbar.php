@@ -20,11 +20,12 @@
          <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Logg inn";}?>&nbsp;<span class="caret"></span></a>
+    <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Logg inn / Registrer";}?>&nbsp;<span class="caret"></span></a>
              <ul class="dropdown-menu">
                <!-- Dynamic buttons based on user session -->
-               <?php if ($userRow['userStat'] == '1') { echo "<li><a href='Kontrollpanel.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Kontrollpanel</a></li>";} ?>
-               <?php if( isset($_SESSION['user']) ) { echo "<li><a href='usersettings.php'><span class='glyphicon glyphicon-user'></span>&nbsp;Bruker innstillinger</a></li>"; } ?>
+               <?php if ($userRow['userStat'] == '1') { echo "<li><a href='Kontrollpanel.php'><span class='glyphicon glyphicon-wrench'></span>&nbsp;Kontrollpanel</a></li>";} ?>
+               <?php if( isset($_SESSION['user']) ) { echo "<li><a href='usersettings.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Bruker innstillinger</a></li>"; } ?>
+               <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='registrer.php'><span class='glyphicon glyphicon-edit'></span>&nbsp;Registrer</a></li>"; } ?>
                <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='login.php'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Logg inn</a></li>"; } ?>
                <?php if( isset($_SESSION['user']) ) { echo "<li><a href='logout.php?logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logg av</a></li>"; } ?>
              </ul>
