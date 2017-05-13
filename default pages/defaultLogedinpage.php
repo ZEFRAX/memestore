@@ -4,9 +4,9 @@
  require_once 'includes/dbConnect.php';
 
  // if session is not set this will redirect to login page
- #if( !isset($_SESSION['user']) ) {
-  #header("Location: index.php");
-  #exit;
+ if( !isset($_SESSION['user']) ) {
+  header("Location: index.php");
+  exit;
  #}
  // select loggedin users detail
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
@@ -28,11 +28,11 @@ include'includes/navbar.php'; ?>
  <div class="container top-buffer">
 
      <div class="page-header ">
-     <h3>Coding Cage - Programming Blog</h3>
+     <h3>Standard side</h3>
      </div>
         <div class="row">
         <div class="col-lg-12">
-        <h1>Focuses on PHP, MySQL, Ajax, jQuery, Web Design and more...</h1>
+        <h1>Standard side som alle kan se om man har en bruker eller ikke  </h1>
         </div>
         </div>
 

@@ -23,18 +23,23 @@ include'includes/head.php';
 include'includes/navbar.php'; ?>
 
 <body>
-  <div id="wrapper">
-    <div class="container top-buffer">
-      <div class="page-header ">
-        <h3>Standard </h3>
-      </div>
-      <div class="row">
+ <div id="wrapper">
+
+ <div class="container top-buffer">
+
+     <div class="page-header ">
+     <h3>Standard side</h3>
+     </div>
+        <div class="row">
         <div class="col-lg-12">
-          <h1>Standard side som alle kan se om man har en bruker eller ikke  </h1>
+        <h1>Standard side som alle kan se om man har en bruker eller ikke  </h1>
         </div>
-      </div>
+        </div>
+
     </div>
-  </div>
+
+    </div>
 </body>
 </html>
+
 <?php ob_end_flush(); ?>
