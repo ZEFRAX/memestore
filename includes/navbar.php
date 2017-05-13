@@ -24,6 +24,7 @@
              <ul class="dropdown-menu">
                <!-- Dynamic buttons based on user session -->
                <?php if ($userRow['userStat'] == '1') { echo "<li><a href='Kontrollpanel.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Kontrollpanel</a></li>";} ?>
+               <?php if( isset($_SESSION['user']) ) { echo "<li><a href='usersettings.php'><span class='glyphicon glyphicon-user'></span>&nbsp;Bruker innstillinger</a></li>"; } ?>
                <?php if( !isset($_SESSION['user']) ) { echo "<li><a href='login.php'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Logg inn</a></li>"; } ?>
                <?php if( isset($_SESSION['user']) ) { echo "<li><a href='logout.php?logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logg av</a></li>"; } ?>
              </ul>

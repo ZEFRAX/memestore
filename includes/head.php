@@ -1,9 +1,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php  if ($userRow['userName'] == "") {
-  echo "Welcome to MemeStore";
+  echo "Velkommen til MemeStore";
 }else {
-  echo "Welcome  -  " . $userRow['userName'];
+  echo "Velkommen  -  " . $userRow['userName'];
 }?></title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
