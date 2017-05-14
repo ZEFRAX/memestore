@@ -3,6 +3,7 @@
  session_start();
  require_once 'includes/dbConnect.php';
 
+
  // if session is not set this will redirect to login page
  if( !isset($_SESSION['user']) ) {
   header("Location: index.php");
@@ -13,9 +14,6 @@
  $userRow=mysql_fetch_array($res);
 ?>
 
-<style media="screen">
-  .top-buffer { margin-top: 30px;}
-</style>
 
 <?php
 include'includes/head.php';
@@ -25,7 +23,7 @@ include'includes/navbar.php'; ?>
 <body>
  <div id="wrapper">
 
- <div class="container top-buffer">
+ <div class="container top-buffer-30">
 
      <div class="page-header ">
      <h3>Standard side</h3>

@@ -5,6 +5,8 @@
   header("Location: index.php");
  }
  include_once 'includes/dbConnect.php';
+ include_once'includes/head.php';
+ include_once'includes/navbar.php';
 
  $error = false;
 
@@ -113,14 +115,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Registrering</title>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 
-<div class="container">
+<div class="container top-buffer-30">
 
  <div id="login-form">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">

@@ -19,17 +19,12 @@ if ($userRow['userStat'] != '1') {
   //Edit html under here  vvvv
 ?>
 
-<!-- STYLE-->
-<style media="screen">
-  .top-buffer { margin-top: 30px;}
-</style>
-<!-- STYLE END-->
 
 
 <!-- HTML START-->
 <body>
  <div id="wrapper">
-   <div class="container top-buffer">
+   <div class="container top-buffer-30">
      <div class="page-header ">
        <h3>Standard Administrator side</h3>
      </div>

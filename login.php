@@ -2,6 +2,8 @@
  ob_start();
  session_start();
  require_once 'includes/dbConnect.php';
+ include'includes/head.php';
+ include'includes/navbar.php';
 
  // it will never let you open index(login) page if session is set
 
@@ -86,7 +88,7 @@
      <div class="col-md-12">
 
          <div class="form-group">
-             <h2 class="">Logg inn.</h2>
+             <h2 class="top-buffer-50">Logg inn.</h2>
             </div>
 
          <div class="form-group">
