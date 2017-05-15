@@ -22,7 +22,7 @@ include'includes/navbar.php'; ?>
 <body>
   <div id="wrapper">
     <div class="container">
-      <div class="page-header top-buffer-30">
+      <div class="page-header top-buffer-70">
         <h3>Standard side</h3>
       </div>
       <div class="row">
