@@ -20,9 +20,10 @@ include'includes/head.php';
 include'includes/navbar.php'; ?>
 
 <body>
+
   <div id="wrapper">
-    <div class="container">
-      <div class="page-header top-buffer-70">
+    <div class="container top-buffer-30">
+      <div class="page-header">
         <h3>Standard side</h3>
       </div>
       <div class="row">
