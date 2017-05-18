@@ -98,7 +98,7 @@ if (empty($productRating)){
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO users(productName,productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName','$productDesc','$productPrice','$productStock','$productImage','$productRating')";
+   $query = "INSERT INTO products(productName,productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName','$productDesc','$productPrice','$productStock','$productImage','$productRating')";
    $res = mysql_query($query);
 
    if ($res) {
