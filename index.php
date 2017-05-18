@@ -32,8 +32,8 @@ include'includes/navbar.php'; ?>
         </div>
       </div>
       <div class="container">
-        <a href="load.php"> test </a>
 
+        <a href="load.php"> test </a>
     </div>
   </div>
 </body>

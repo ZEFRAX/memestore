@@ -28,6 +28,10 @@ if ($userRow['userStat'] != '1') {
   $productName = strip_tags($productName);
   $productName = htmlspecialchars($productName);
 
+  $productTag = trim($_POST['productTag']);
+  $productTag = strip_tags($productTag);
+  $productTag = htmlspecialchars($productTag);
+
   $productDesc = trim($_POST['productDesc']);
   $productDesc = strip_tags($productDesc);
   $productDesc = htmlspecialchars($productDesc);
@@ -51,7 +55,7 @@ if ($userRow['userStat'] != '1') {
 
 
 
-  // basic name validation
+  // basic production name
   if (empty($productName)) {
    $error = true;
    $productNameError = "Please enter your full productName.";
@@ -63,7 +67,16 @@ if ($userRow['userStat'] != '1') {
    $productNameError = "productName must contain alphabets and space.";
   }
 
-  //basic email validation
+  //basic product Tag
+  if (empty($productTag)) {
+   $error = true;
+   $productTagError = "Please enter valid productTag address.";
+ }else{
+   $productTag = strtolower($productTag);
+
+ }
+
+  //basic product description
   if (empty($productDesc)) {
    $error = true;
    $productDescError = "Please enter valid productDesc";
@@ -84,11 +97,6 @@ if ($userRow['userStat'] != '1') {
    $productStockError = "Skriv inn productStock";
  }
 
- // productImage validation
- if (empty($productImage)){
-  $error = true;
-  $productImageError = "Skriv inn productImage";
-}
 // productStock validation
 if (empty($productRating)){
  $error = true;
@@ -98,13 +106,14 @@ if (empty($productRating)){
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO products(productName,productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName','$productDesc','$productPrice','$productStock','$productImage','$productRating')";
+   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$productImage','$productRating')";
    $res = mysql_query($query);
 
    if ($res) {
     $errTyp = "success";
     $errMSG = "Successfully registered, you may login now";
     unset($productName);
+    unset($productTag);
     unset($productDesc);
     unset($productPrice);
     unset($productStock);
@@ -116,9 +125,45 @@ if (empty($productRating)){
    }
 
   }
+  $target_dir = "uploads/";
+  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+  // Check if image file is a actual image or fake image
+      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  // Check if $uploadOk is set to 0 by an error
+  // Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
+
+  if ($uploadOk == 0) {
+      echo "Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+          echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
+
 
 
  }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -130,7 +175,7 @@ if (empty($productRating)){
 <div class="container top-buffer-30">
 
  <div id="login-form">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+    <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"autocomplete="off">
 
      <div class="col-md-12">
 
@@ -157,7 +202,7 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
              <input type="text" name="productName" class="form-control" placeholder="Varenavn" maxlength="50" value="<?php echo $productName ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productNameError; ?></span>
@@ -165,7 +210,15 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
+                <input type="text" name="productTag" class="form-control" placeholder="Tag" maxlength="50" value="<?php echo $productTag ?>" />
+                </div>
+                <span class="text-danger"><?php echo $productTagError; ?></span>
+            </div>
+
+            <div class="form-group">
+             <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></span>
              <input type="text" name="productDesc" class="form-control" placeholder="Beskrivelse" maxlength="40" value="<?php echo $productDesc ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productDescError; ?></span>
@@ -173,7 +226,7 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
              <input type="text" name="productPrice" class="form-control" placeholder="Pris" maxlength="8" value="<?php echo $productPrice ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productPriceError; ?></span>
@@ -181,7 +234,7 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-inbox"></span></span>
              <input type="text" name="productStock" class="form-control" placeholder="Stock" maxlength="15" value="<?php echo $productStock ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productStockError; ?></span>
@@ -189,21 +242,22 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="text" name="productImage" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
+
+
+                <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
+             <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
+
                 </div>
                 <span class="text-danger"><?php echo $productImageError; ?></span>
             </div>
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
              <input type="text" name="productRating" class="form-control" placeholder="Rating number" maxlength="15" value="<?php echo $productRating ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productRatingError; ?></span>
             </div>
-
-
 
 
             <div class="form-group">
