@@ -66,7 +66,7 @@ if ($userRow['userStat'] != '1') {
   //basic email validation
   if (empty($productDesc)) {
    $error = true;
-   $productDescError = "Please enter valid productDesc address.";
+   $productDescError = "Please enter valid productDesc";
   }
 
   // basic productPrice validation
