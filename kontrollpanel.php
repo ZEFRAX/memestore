@@ -188,7 +188,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
              <input type="text" name="productName" class="form-control" placeholder="Varenavn" maxlength="50" value="<?php echo $productName ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productNameError; ?></span>
@@ -204,7 +204,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
              <input type="text" name="productPrice" class="form-control" placeholder="Pris" maxlength="8" value="<?php echo $productPrice ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productPriceError; ?></span>
@@ -212,7 +212,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-inbox"></span></span>
              <input type="text" name="productStock" class="form-control" placeholder="Stock" maxlength="15" value="<?php echo $productStock ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productStockError; ?></span>
@@ -220,15 +220,18 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+
+
+                <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
              <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
+
                 </div>
                 <span class="text-danger"><?php echo $productImageError; ?></span>
             </div>
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
              <input type="text" name="productRating" class="form-control" placeholder="Rating number" maxlength="15" value="<?php echo $productRating ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productRatingError; ?></span>
