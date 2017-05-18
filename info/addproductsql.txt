@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `products` (
   `productID` int(11) NOT NULL AUTO_INCREMENT,
   `productName` varchar(30) NOT NULL,
   `productDesc` varchar(60) NOT NULL,
