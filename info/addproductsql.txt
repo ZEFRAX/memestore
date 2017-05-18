@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `products` (
+  `productID` int(11) NOT NULL AUTO_INCREMENT,
+  `productName` varchar(30) NOT NULL,
+  `productDesc` varchar(60) NOT NULL,
+  `productPrice` int(4) NOT NULL,
+  `productStock` int(8) NOT NULL,
+  `productImage` varchar(255) NOT NULL,
+  `productRating` int(4) NOT NULL,
+  `productTime` int(6) NOT NULL,
+  PRIMARY KEY (`productID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
