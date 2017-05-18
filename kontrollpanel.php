@@ -84,11 +84,6 @@ if ($userRow['userStat'] != '1') {
    $productStockError = "Skriv inn productStock";
  }
 
- // productImage validation
- if (empty($productImage)){
-  $error = true;
-  $productImageError = "Skriv inn productImage";
-}
 // productStock validation
 if (empty($productRating)){
  $error = true;
@@ -116,9 +111,45 @@ if (empty($productRating)){
    }
 
   }
+  $target_dir = "uploads/";
+  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+  // Check if image file is a actual image or fake image
+      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  // Check if $uploadOk is set to 0 by an error
+  // Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
+
+  if ($uploadOk == 0) {
+      echo "Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+          echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
+
 
 
  }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -130,7 +161,7 @@ if (empty($productRating)){
 <div class="container top-buffer-30">
 
  <div id="login-form">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+    <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"autocomplete="off">
 
      <div class="col-md-12">
 
@@ -165,7 +196,7 @@ if (empty($productRating)){
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
              <input type="text" name="productDesc" class="form-control" placeholder="Beskrivelse" maxlength="40" value="<?php echo $productDesc ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productDescError; ?></span>
@@ -190,7 +221,7 @@ if (empty($productRating)){
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="text" name="productImage" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
+             <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productImageError; ?></span>
             </div>
@@ -202,8 +233,6 @@ if (empty($productRating)){
                 </div>
                 <span class="text-danger"><?php echo $productRatingError; ?></span>
             </div>
-
-
 
 
             <div class="form-group">
