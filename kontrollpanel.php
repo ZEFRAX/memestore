@@ -44,6 +44,12 @@ if ($userRow['userStat'] != '1') {
   $productImage = strip_tags($productImage);
   $productImage = htmlspecialchars($productImage);
 
+  $productRating = trim($_POST['productRating']);
+  $productRating = strip_tags($productRating);
+  $productRating = htmlspecialchars($productRating);
+
+
+
 
   // basic name validation
   if (empty($productName)) {
@@ -76,26 +82,17 @@ if ($userRow['userStat'] != '1') {
   if (empty($productStock)){
    $error = true;
    $productStockError = "Skriv inn productStock";
- } else if(strlen($productStock) < 1) {
-   $error = true;
-   $productStockError = "productStock må minst ha 6 bokstaver.";
  }
 
  // productImage validation
  if (empty($productImage)){
   $error = true;
   $productImageError = "Skriv inn productImage";
-} else if(strlen($productImage) < 1) {
-  $error = true;
-  $productImageError = "productImage må minst ha 6 bokstaver.";
 }
 // productStock validation
 if (empty($productRating)){
  $error = true;
  $productRatingError = "Skriv inn productRating";
-} else if(strlen($productRating) < 1) {
- $error = true;
- $productRatingError = "productRating må minst ha 6 bokstaver.";
 }
 
   // if there's no error, continue to signup
@@ -186,7 +183,7 @@ if (empty($productRating)){
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="text" name="productStock" class="form-control" placeholder="Stock" maxlength="15" />
+             <input type="text" name="productStock" class="form-control" placeholder="Stock" maxlength="15" value="<?php echo $productStock ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productStockError; ?></span>
             </div>
@@ -194,7 +191,7 @@ if (empty($productRating)){
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="text" name="productImage" class="form-control" placeholder="productImage link" maxlength="15" />
+             <input type="text" name="productImage" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productImageError; ?></span>
             </div>
@@ -202,7 +199,7 @@ if (empty($productRating)){
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="text" name="productRating" class="form-control" placeholder="Rating number" maxlength="15" />
+             <input type="text" name="productRating" class="form-control" placeholder="Rating number" maxlength="15" value="<?php echo $productRating ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productRatingError; ?></span>
             </div>
