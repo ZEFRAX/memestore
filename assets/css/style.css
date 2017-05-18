@@ -15,3 +15,25 @@
 .top-buffer-80 { margin-top: 80px;}
 .top-buffer-90 { margin-top: 90px;}
 .top-buffer-100 { margin-top: 100px;}
+
+
+.cube{
+height: 500px;
+}
+.bottom-align-stars {
+    position: absolute;
+    bottom: 15px;
+    left: 35px;
+  }
+  .bottom-align-text {
+      position: absolute;
+      bottom: 15px;
+      right: 30px;
+    }
+
+    .text {
+      overflow: hidden;
+         display: -webkit-box;
+         -webkit-line-clamp: 3;
+         -webkit-box-orient: vertical;  
+}
