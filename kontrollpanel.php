@@ -28,6 +28,10 @@ if ($userRow['userStat'] != '1') {
   $productName = strip_tags($productName);
   $productName = htmlspecialchars($productName);
 
+  $productTag = trim($_POST['productTag']);
+  $productTag = strip_tags($productTag);
+  $productTag = htmlspecialchars($productTag);
+
   $productDesc = trim($_POST['productDesc']);
   $productDesc = strip_tags($productDesc);
   $productDesc = htmlspecialchars($productDesc);
@@ -51,7 +55,7 @@ if ($userRow['userStat'] != '1') {
 
 
 
-  // basic name validation
+  // basic production name
   if (empty($productName)) {
    $error = true;
    $productNameError = "Please enter your full productName.";
@@ -63,7 +67,16 @@ if ($userRow['userStat'] != '1') {
    $productNameError = "productName must contain alphabets and space.";
   }
 
-  //basic email validation
+  //basic product Tag
+  if (empty($productTag)) {
+   $error = true;
+   $productTagError = "Please enter valid productTag address.";
+ }else{
+   $productTag = strtolower($productTag);
+
+ }
+
+  //basic product description
   if (empty($productDesc)) {
    $error = true;
    $productDescError = "Please enter valid productDesc address.";
@@ -98,13 +111,14 @@ if (empty($productRating)){
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO products(productName,productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName','$productDesc','$productPrice','$productStock','$productImage','$productRating')";
+   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$productImage','$productRating')";
    $res = mysql_query($query);
 
    if ($res) {
     $errTyp = "success";
     $errMSG = "Successfully registered, you may login now";
     unset($productName);
+    unset($productTag);
     unset($productDesc);
     unset($productPrice);
     unset($productStock);
@@ -159,6 +173,14 @@ if (empty($productRating)){
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
              <input type="text" name="productName" class="form-control" placeholder="Varenavn" maxlength="50" value="<?php echo $productName ?>" />
+                </div>
+                <span class="text-danger"><?php echo $productNameError; ?></span>
+            </div>
+
+            <div class="form-group">
+             <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
+             <input type="text" name="productTag" class="form-control" placeholder="Tag" maxlength="50" value="<?php echo $productTag ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productNameError; ?></span>
             </div>
