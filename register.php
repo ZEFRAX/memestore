@@ -69,7 +69,7 @@
    $phoneError = "phone must have atleat 8 characters.";
  } else if (!preg_match("/^[0-9]+$/",$phone)) {
    $error = true;
-   $phoneError = "phone must contain alphabets and space.";
+   $phoneError = "Telefon nummer må inneholde nummer";
   }
 
   // password validation
@@ -166,7 +166,7 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
-             <input type="text" name="phone" class="form-control" placeholder="Telefonnummer" maxlength="8" value="<?php echo $phone ?>" />
+             <input type="tel" name="phone" class="form-control" placeholder="Telefonnummer" maxlength="8" value="<?php echo $phone ?>" />
                 </div>
                 <span class="text-danger"><?php echo $phoneError; ?></span>
             </div>

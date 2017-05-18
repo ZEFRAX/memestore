@@ -44,9 +44,7 @@ if ($userRow['userStat'] != '1') {
   $productStock = strip_tags($productStock);
   $productStock = htmlspecialchars($productStock);
 
-  $productImage = trim($_POST['productImage']);
-  $productImage = strip_tags($productImage);
-  $productImage = htmlspecialchars($productImage);
+  $productImage = htmlspecialchars($target_file);
 
   $productRating = trim($_POST['productRating']);
   $productRating = strip_tags($productRating);
@@ -103,66 +101,59 @@ if (empty($productRating)){
  $productRatingError = "Skriv inn productRating";
 }
 
+
+
+
+
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  $productImageColor = "text-danger";
+  $productImageError = "Filen finnes allerede!";
+  $error = true;
+}
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 10000000) {
+  $productImageColor = "text-danger";
+  $productImageError = "Filen er for stor!";
+  $error = true;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  $productImageColor = "text-danger";
+  $productImageError = "Beklager bare JPG, JPEG, PNG & GIF filer er tillat.";
+  $error = true;
+}
+
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$productImage','$productRating')";
+   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating')";
    $res = mysql_query($query);
 
-   if ($res) {
+   if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
-    $errMSG = "Successfully registered, you may login now";
+    $errMSG = "Produktet ble lagt till!";
     unset($productName);
     unset($productTag);
     unset($productDesc);
     unset($productPrice);
     unset($productStock);
-    unset($productImage);
     unset($productRating);
-   } else {
-    $errTyp = "danger";
-    $errMSG = "Something went wrong, try again later...";
-   }
-
-  }
-  $target_dir = "uploads/";
-  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-  // Check if image file is a actual image or fake image
-      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  // Check if $uploadOk is set to 0 by an error
-  // Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
-
-  if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
   } else {
-      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-          echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-      } else {
-          echo "Sorry, there was an error uploading your file.";
-      }
+    $errTyp = "danger";
+    $errMSG = "Noe gikk galt :( Prøv igjen senere!)";
   }
+}
+}
 
 
-
- }
 
 ?>
 <!DOCTYPE html>
@@ -219,7 +210,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></span>
-             <input type="text" name="productDesc" class="form-control" placeholder="Beskrivelse" maxlength="40" value="<?php echo $productDesc ?>" />
+             <textarea  type="text" name="productDesc" class="form-control" placeholder="Beskrivelse"cols="40" rows="5" value="<?php echo $productDesc ?>"></textarea>
                 </div>
                 <span class="text-danger"><?php echo $productDescError; ?></span>
             </div>
@@ -245,10 +236,10 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
 
                 <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-             <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="15" value="<?php echo $productImage ?>"/>
+             <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="9999999999" value=""/>
 
                 </div>
-                <span class="text-danger"><?php echo $productImageError; ?></span>
+                <span class= <?php echo $productImageColor;?> ><?php echo $productImageError; ?></span>
             </div>
 
             <div class="form-group">
