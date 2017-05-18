@@ -110,7 +110,6 @@ if (empty($productRating)){
     unset($productStock);
     unset($productImage);
     unset($productRating);
-    header("Location: login.php?success");
    } else {
     $errTyp = "danger";
     $errMSG = "Something went wrong, try again later...";
