@@ -139,7 +139,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
    if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
-    $errMSG = "Produktet ble lagt till!";
+    $errMSG = "Produktet ble lagt til!";
     unset($productName);
     unset($productTag);
     unset($productDesc);
@@ -184,7 +184,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     ?>
     <div class="form-group ">
              <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?>">
-    <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
+    <span style="font-size: 30px;"class="<?php if ($errTyp=="success") { echo "glyphicon glyphicon-saved";}else { echo "glyphicon glyphicon-remove";}?>"></span> <?php echo $errMSG; ?>
                 </div>
              </div>
                 <?php

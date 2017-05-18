@@ -20,7 +20,8 @@ $result = mysql_query($sql);
        <p class='text'>" . $row["productDesc"] . "</p>
        </div>
        <div class='ratings'> <p class='pull-right bottom-align-text'>Added " . $row["productTime"] . "</p>
-       <p class='bottom-align-stars'> <span class='glyphicon glyphicon-star'></span>
+       <p class='bottom-align-stars'>
+       <span class='glyphicon glyphicon-star'></span>
        <span class='glyphicon glyphicon-star'></span>
        <span class='glyphicon glyphicon-star'></span>
        <span class='glyphicon glyphicon-star'></span>
