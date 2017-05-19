@@ -41,6 +41,7 @@ $result = mysql_query($sql);
        echo "</p></div></div></div>".$additionalClass2."";
       }
 
+
      } else {
        echo "0 results";
 

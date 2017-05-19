@@ -124,11 +124,12 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
   $error = true;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "mp4" && $imageFileType != "webm"
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
   $productImageColor = "text-danger";
-  $productImageError = "Beklager bare JPG, JPEG, PNG, MP4, WEBM & GIF filer er tillat.";
+  $productImageError = "Beklager bare JPG, JPEG, PNG & GIF filer er tillat.";
   $error = true;
+
 }
 
   // if there's no error, continue to signup
@@ -137,8 +138,9 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
    $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating')";
    $res = mysql_query($query);
 
-   if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+   if ($res && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
+
     $errMSG = "Produktet ble lagt till!";
     unset($productName);
     unset($productTag);
