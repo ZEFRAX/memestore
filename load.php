@@ -2,22 +2,22 @@
 
 $sql = "SELECT productImage, productPrice, productName, productDesc, productTime, productRating FROM products";
 $result = mysql_query($sql);
- if (mysql_num_rows($result) > 0) {
+if (mysql_num_rows($result) > 0) {
     // output data of each row
     $i = 0;
     $e = 0;
     while($row = mysql_fetch_assoc($result)) {
-      $i++;
-      $e++;
+        $i++;
+        $e++;
 
-    $element = "<span class='glyphicon glyphicon-star'></span>";
-    $emptyElement = "<span class='glyphicon glyphicon-star-empty'></span>";
-    $emptyCount = 5;
-    $count = $row["productRating"];
+        $element = "<span class='glyphicon glyphicon-star'></span>";
+        $emptyElement = "<span class='glyphicon glyphicon-star-empty'></span>";
+        $emptyCount = 5;
+        $count = $row["productRating"];
 
-      $additionalClass = ($i % 3) == 0 ? " <div class='row'>" : "";
-      $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";
-       echo "".$additionalClass."<div class=' col-xs-4 col-sm-4 col-lg-4 col-md-4'>
+        $additionalClass = ($i % 3) == 0 ? " <div class='row'>" : "";
+        $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";
+        echo "".$additionalClass."<div class=' col-xs-4 col-sm-4 col-lg-4 col-md-4'>
        <div class='thumbnail cube'> <img src='". $row["productImage"] ."' alt=''>
        <div class='caption'>
        <h4 class='pull-right'>" . $row["productPrice"].",-</h4>
@@ -38,12 +38,11 @@ $result = mysql_query($sql);
             }
         }
 
-       echo "</p></div></div></div>".$additionalClass2."";
-      }
+        echo "</p></div></div></div>".$additionalClass2."";
+    }
 
+} else {
+    echo "0 results";
 
-     } else {
-       echo "0 results";
-
-     }
-     mysql_close($conn);?>
+}
+mysql_close($conn);?>
