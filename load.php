@@ -12,7 +12,7 @@ $result = mysql_query($sql);
 
       $additionalClass = ($i % 3) == 0 ? " <div class='row'>" : "";
       $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";
-       echo "".$additionalClass."<div class=' col-xs-4 col-sm-4 col-lg-4 col-md-4'>
+       echo "".$additionalClass."<div class 'row'><div class=' col-xs-4 col-sm-4 col-lg-4 col-md-4'>
        <div class='thumbnail cube'> <img src='". $row["productImage"] ."' alt=''>
        <div class='caption'>
        <h4 class='pull-right'>" . $row["productPrice"].",-</h4>
@@ -28,7 +28,9 @@ $result = mysql_query($sql);
        </p>
        </div>
         </div>
+        </div>
         </div>".$additionalClass2."";
+
       }
 
 

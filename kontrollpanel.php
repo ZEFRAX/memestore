@@ -138,7 +138,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
    $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating')";
    $res = mysql_query($query);
 
-   if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+   if ($res && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
 
     $errMSG = "Produktet ble lagt till!";
