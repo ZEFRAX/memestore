@@ -127,7 +127,7 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
   $productImageColor = "text-danger";
-  $productImageError = "Beklager bare JPG, JPEG, PNG, MP4, WEBM & GIF filer er tillat.";
+  $productImageError = "Beklager b are JPG, JPEG, PNG, MP4, WEBM & GIF filer er tillat.";
   $error = true;
 }
 
@@ -139,6 +139,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
    if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
+
     $errMSG = "Produktet ble lagt till!";
     unset($productName);
     unset($productTag);
