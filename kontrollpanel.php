@@ -124,7 +124,7 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
   $error = true;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "mp4" && $imageFileType != "webm"
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
   $productImageColor = "text-danger";
   $productImageError = "Beklager bare JPG, JPEG, PNG, MP4, WEBM & GIF filer er tillat.";
