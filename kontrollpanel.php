@@ -99,6 +99,12 @@ if ($userRow['userStat'] != '1') {
 if (empty($productRating)){
  $error = true;
  $productRatingError = "Skriv inn productRating";
+}else if (strlen($productRating) < 1) {
+ $error = true;
+ $productRatingError = "rating must have atleat 1 characters.";
+} else if ($productRating > 6) {
+ $error = true;
+ $productRatingError = "Må være 0 - 5 ";
 }
 
 
@@ -124,11 +130,11 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
   $error = true;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
   $productImageColor = "text-danger";
   $productImageError = "Beklager bare JPG, JPEG, PNG & GIF filer er tillat.";
   $error = true;
+
 }
 
   // if there's no error, continue to signup
@@ -137,7 +143,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
    $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating')";
    $res = mysql_query($query);
 
-   if ($res & move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+   if ($res && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $errTyp = "success";
     $errMSG = "Produktet ble lagt til!";
     unset($productName);

@@ -1,0 +1,4 @@
+.idea/
+uploads/*
+!uploads/gitkeep.txt
+includes/dbConnect.php
