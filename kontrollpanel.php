@@ -99,6 +99,12 @@ if ($userRow['userStat'] != '1') {
 if (empty($productRating)){
  $error = true;
  $productRatingError = "Skriv inn productRating";
+}else if (strlen($productRating) < 1) {
+ $error = true;
+ $productRatingError = "rating must have atleat 1 characters.";
+} else if (strlen($productRating) > 6) {
+ $error = true;
+ $productRatingError = "Må være 0 - 6 ";
 }
 
 
@@ -124,8 +130,7 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
   $error = true;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
   $productImageColor = "text-danger";
   $productImageError = "Beklager bare JPG, JPEG, PNG & GIF filer er tillat.";
   $error = true;
