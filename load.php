@@ -1,6 +1,6 @@
 <?php include'includes/dbConnect.php';
 
-$sql = "SELECT productImage, productPrice, productName, productDesc, productTime FROM products";
+$sql = "SELECT productImage, productPrice, productName, productDesc, productTime, productRating FROM products";
 $result = mysql_query($sql);
  if (mysql_num_rows($result) > 0) {
     // output data of each row
@@ -9,6 +9,11 @@ $result = mysql_query($sql);
     while($row = mysql_fetch_assoc($result)) {
       $i++;
       $e++;
+
+    $element = "<span class='glyphicon glyphicon-star'></span>";
+    $emptyElement = "<span class='glyphicon glyphicon-star-empty'></span>";
+    $emptyCount = 5;
+    $count = $row["productRating"];
 
       $additionalClass = ($i % 3) == 0 ? " <div class='row'>" : "";
       $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";
@@ -20,15 +25,20 @@ $result = mysql_query($sql);
        <p class='text'>" . $row["productDesc"] . "</p>
        </div>
        <div class='ratings'> <p class='pull-right bottom-align-text'>Added " . $row["productTime"] . "</p>
-       <p class='bottom-align-stars'> <span class='glyphicon glyphicon-star'></span>
-       <span class='glyphicon glyphicon-star'></span>
-       <span class='glyphicon glyphicon-star'></span>
-       <span class='glyphicon glyphicon-star'></span>
-       <span class='glyphicon glyphicon-star'></span>
-       </p>
-       </div>
-        </div>
-        </div>".$additionalClass2."";
+       <p class='bottom-align-stars'>";
+
+        if ($count < 6 && $count > 0) {
+            for ($a = 0; $a < $count; $a++) {
+                echo $element;
+            }
+        }
+        else {
+            for ($a = 0; $a < $emptyCount; $a++) {
+                echo $emptyElement;
+            }
+        }
+
+       echo "</p></div></div></div>".$additionalClass2."";
       }
 
      } else {
