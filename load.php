@@ -27,6 +27,60 @@ if (mysql_num_rows($result) > 0) {
        <div class='ratings'> <p class='pull-right bottom-align-text'>Added " . $row["productTime"] . "</p>
        <p class='bottom-align-stars'>";
 
+        // Rating System
+        switch($count) {
+            case 0:
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                break;
+            case 1:
+                echo $element;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                break;
+            case 2:
+                echo $element;
+                echo $element;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                break;
+            case 3:
+                echo $element;
+                echo $element;
+                echo $element;
+                echo $emptyElement;
+                echo $emptyElement;
+                break;
+            case 4:
+                echo $element;
+                echo $element;
+                echo $element;
+                echo $element;
+                echo $emptyElement;
+                break;
+            case 5:
+                echo $element;
+                echo $element;
+                echo $element;
+                echo $element;
+                echo $element;
+                break;
+            default:
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                echo $emptyElement;
+                break;
+        }
+
+        /*
         if ($count < 6 && $count > 0) {
             for ($a = 0; $a < $count; $a++) {
                 echo $element;
@@ -36,7 +90,7 @@ if (mysql_num_rows($result) > 0) {
             for ($a = 0; $a < $emptyCount; $a++) {
                 echo $emptyElement;
             }
-        }
+        }*/
 
         echo "</p></div></div></div>".$additionalClass2."";
     }
