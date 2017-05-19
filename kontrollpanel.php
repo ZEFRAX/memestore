@@ -102,9 +102,9 @@ if (empty($productRating)){
 }else if (strlen($productRating) < 1) {
  $error = true;
  $productRatingError = "rating must have atleat 1 characters.";
-} else if (strlen($productRating) > 6) {
+} else if ($productRating > 6) {
  $error = true;
- $productRatingError = "Må være 0 - 6 ";
+ $productRatingError = "Må være 0 - 5 ";
 }
 
 
