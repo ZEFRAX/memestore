@@ -60,7 +60,7 @@ if ($userRow['userStat'] != '1') {
   } else if (strlen($productName) < 3) {
    $error = true;
    $productNameError = "Name must have atleat 3 characters.";
- } else if (!preg_match("/^[a-zA-Z ÆØÅæøå]+$/",$productName)) {
+ } else if (!preg_match("/^[a-zA-Z ÆØÅæøå ,.!?]+$/",$productName)) {
    $error = true;
    $productNameError = "productName must contain alphabets and space.";
   }
