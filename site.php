@@ -34,7 +34,23 @@ include'includes/navbar.php'; ?>
                 </div>
                 <div class="col-xs-5" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
-                    <h3><?php echo $product["productName"] ?></h3>
+                    <h3 style="display: inline;"><?php echo $product["productName"] ?>&nbsp;&nbsp;&nbsp;</h3><?php if ($userRow['userStat'] == '1') { echo "<button type='button' onclick='validation()'class='btn btn-danger'><span class='glyphicon glyphicon-trash'></span></button>";} ?>
+
+                    <script>
+
+                    function validation() {
+                      var txt;
+                      var r = confirm("Er du sikker på at du vil slette dette produktet?\nVelg Ok eller Avbryt!");
+                      if (r == true) {
+                      var php_var = "<?php echo $product["productID"] ?>";
+                        window.location.replace('delete.php?'+ php_var);
+                      } else {
+                        txt = "You pressed Cancel!";
+                      }
+                      document.getElementById("demo").innerHTML = txt;
+                    }
+                    </script>
+
                     <h5 style="font-size:20px">
                     <?php
                     $element = "<span class='glyphicon glyphicon-star'></span>";
@@ -115,11 +131,18 @@ include'includes/navbar.php'; ?>
                       <span class="label label-default">Default Label</span>
                       <span class="label label-default">Default Label</span>
                     </div>
+                    <div class="section" style="padding-bottom:20px;">
+                      <h6 class="title-price"><small>Time Created:  <?php echo $product['productTime'] ?></small></h6>
+
+
+                    </div>
                 </div>
 
                 <div class="col-xs-9">
-                    <div style="width:100%;border-top:1px solid silver">
-                        <p style="padding:15px;">
+                  <hr>
+                    <div style="width:100%;">
+                      <h3>Beskrivelse</h3>
+                        <p style="padding:10px;">
                             <small><?php echo $product["productDesc"] ?></small>
 
 

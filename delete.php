@@ -1,0 +1,53 @@
+<?php
+ session_start();
+ require_once 'includes/dbConnect.php';
+
+
+ $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow=mysql_fetch_array($res);
+
+ if (!isset($_SESSION['user'])) {
+   header("Location: indexd.php");
+ }else if ($userRow['userStat'] != '1') {
+   header("Location: index.php");}
+
+   $url = "$_SERVER[REQUEST_URI]";
+   $url = str_replace("/delete.php?","",$url);
+
+   $query = "DELETE FROM products WHERE productID=".$url;
+   $res = mysql_query($query);
+
+   if ($res) {
+         $errTyp = "success";
+     $errMSG ="Successfully deleted record with id: ".$url;
+  }else {
+    $errTyp = "danger";
+    $errMSG ="Error deleting record with id: ".$url;
+  }
+
+
+   ?>
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
+   <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="container top-buffer-60">
+
+   <?php    if ( isset($errMSG) ) {
+
+       ?>
+       <div class="form-group ">
+                <div class=" alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?> alert-dismissable fade in text-center">
+        <a  style="font-size: 30px;" href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       <span style="font-size: 30px; position: relative; bottom: 20px; "class="<?php if ($errTyp=="success") { echo "glyphicon glyphicon-floppy-saved";}else { echo "glyphicon glyphicon-floppy-remove";}?> text-center"></span>   <?php echo $errMSG; ?>
+                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 ">
+                    <a href=index.php><button  type="button" class="btn">Tilbake til Memestore</button></a>
+                  </div>
+                </div>
+                   <?php
+      } ?>
+
+    </div>

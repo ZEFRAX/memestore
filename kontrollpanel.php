@@ -50,10 +50,14 @@ if ($userRow['userStat'] != '1') {
   $productRating = strip_tags($productRating);
   $productRating = htmlspecialchars($productRating);
 
+  $productActive = trim($_POST['productActive']);
+  $productActive = strip_tags($productActive);
+  $productActive = htmlspecialchars($productActive);
 
 
 
-  // basic production name
+
+  /*// basic production name
   if (empty($productName)) {
    $error = true;
    $productNameError = "Please enter your full productName.";
@@ -110,37 +114,24 @@ if (empty($productRating)){
 
 
 
-
+*/
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
-
 // Check if file already exists
 if (file_exists($target_file)) {
-  $productImageColor = "text-danger";
-  $productImageError = "Filen finnes allerede!";
+  $errTyp = "danger";
+  $errMSG = "Filen finnes allerede";
   $error = true;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 10000000) {
-  $productImageColor = "text-danger";
-  $productImageError = "Filen er for stor!";
-  $error = true;
-}
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-  $productImageColor = "text-danger";
-  $productImageError = "Beklager bare JPG, JPEG, PNG & GIF filer er tillat.";
-  $error = true;
-
-}
-
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating')";
+   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating, productActive) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating','$productActive')";
    $res = mysql_query($query);
 
    if ($res && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -169,38 +160,34 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 </head>
 <body>
 
-<div class="container top-buffer-30">
+<div class="container top-buffer-60">
+  <hr />
+  <?php    if ( isset($errMSG) ) {
 
- <div id="login-form">
-    <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"autocomplete="off">
-
-     <div class="col-md-12">
-
+      ?>
+      <div class="form-group ">
+               <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?> fade in">
+              <a href="index.php" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <span style="font-size: 30px;"class="<?php if ($errTyp=="success") { echo "glyphicon glyphicon-saved";}else { echo "glyphicon glyphicon-remove";}?>"></span> <?php echo $errMSG; ?>
+                  </div>
+               </div>
+                  <?php
+     } ?>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse">Legg til varer</a>
+      </h4>
+    </div>
+    <div id="collapse" class="collapse panel-body">
+      <div id="login-form">
+        <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"autocomplete="off">
          <div class="form-group">
-             <h2 class="">Legg til varer</h2>
             </div>
-
-         <div class="form-group">
-             <hr />
-            </div>
-
-            <?php
-   if ( isset($errMSG) ) {
-
-    ?>
-    <div class="form-group ">
-             <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?>">
-    <span style="font-size: 30px;"class="<?php if ($errTyp=="success") { echo "glyphicon glyphicon-saved";}else { echo "glyphicon glyphicon-remove";}?>"></span> <?php echo $errMSG; ?>
-                </div>
-             </div>
-                <?php
-   }
-   ?>
-
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-             <input type="text" name="productName" class="form-control" placeholder="Varenavn" maxlength="50" value="<?php echo $productName ?>" />
+             <input type="text" name="productName" class="form-control" placeholder="Varenavn" maxlength="50" required value="<?php echo $productName ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productNameError; ?></span>
             </div>
@@ -208,73 +195,94 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-                <input type="text" name="productTag" class="form-control" placeholder="Tag" maxlength="50" value="<?php echo $productTag ?>" />
+                <input type="text" name="productTag" class="form-control" placeholder="Tag" maxlength="50" required value="<?php echo $productTag ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productTagError; ?></span>
             </div>
 
+
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></span>
-             <textarea  type="text" name="productDesc" class="form-control" placeholder="Beskrivelse"cols="40" rows="5" value="<?php echo $productDesc ?>"></textarea>
+             <textarea  type="text" name="productDesc" class="form-control" required placeholder="Beskrivelse"cols="40" rows="5"><?php if(isset($_POST['productDesc'])) { echo htmlentities ($_POST['productDesc']); }?></textarea>
                 </div>
                 <span class="text-danger"><?php echo $productDescError; ?></span>
             </div>
 
+
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-             <input type="text" name="productPrice" class="form-control" placeholder="Pris" maxlength="8" value="<?php echo $productPrice ?>" />
+             <input type="text" name="productPrice" class="form-control" placeholder="Pris" required pattern="[0-9].{0,9}" title="Må inneholde ett tall fra 0 til 9999999" required maxlength="7" value="<?php echo $productPrice ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productPriceError; ?></span>
             </div>
 
+
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-inbox"></span></span>
-             <input type="text" name="productStock" class="form-control" placeholder="Stock" maxlength="15" value="<?php echo $productStock ?>"/>
+             <input type="text" name="productStock" class="form-control" placeholder="Stock" required pattern="[0-9].{0,9}" title="Må kun inneholde tall. Minst ett!" maxlength="4" value="<?php echo $productStock ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $productStockError; ?></span>
             </div>
 
+
+            <script type="text/javascript">
+
+            function update() {
+              var fullPath = document.getElementById('fileToUpload').value;
+              var filenamepath = fullPath.replace(/^.*[\\\/]/, '')
+              var ext = filenamepath.substring(filenamepath.lastIndexOf('.')+1, filenamepath.length) || filenamepath;
+              var checkmark = document.getElementById('checkdiv');
+              if(ext !="jpeg" && ext !="png" && ext !="jpg" && ext !="webm" && ext !="gif" && ext !="mp4"){
+                document.getElementById("warning").innerHTML = "Filen må være av typen JPEG, PNG, JPG, WEBM, GIF og MP4";
+                document.getElementById("fileToUpload").value = "";
+              }else {
+                document.getElementById("warning").innerHTML = "";
+
+            }
+
+
+            }</script>
+
             <div class="form-group">
              <div class="input-group">
-
-
-                <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-             <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" placeholder="productImage link" maxlength="9999999999" value=""/>
-
-                </div>
-                <span class= <?php echo $productImageColor;?> ><?php echo $productImageError; ?></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-picture"><span id="checkdiv" class=""></span></span></span>
+                <input type="file" placeholder="Last opp bilde" name="fileToUpload" required onchange="update();" id="fileToUpload" class="form-control"/>
+              </div>
+              <span id="warning" class= "text-danger"><?php echo $productImageError; ?></span>
             </div>
-
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
-             <input type="text" name="productRating" class="form-control" placeholder="Rating number" maxlength="15" value="<?php echo $productRating ?>"/>
+             <input type="text" name="productRating" class="form-control" placeholder="Rating number 0 - 5" required pattern="[0-5]" title="Må inneholde ett tall fra 0 til 5" maxlength="1" value="<?php echo $productRating ?>"/>
                 </div>
-                <span class="text-danger"><?php echo $productRatingError; ?></span>
+                <span class="text-danger"><?php echo $productRatingError ?></span>
             </div>
-
-
+            <div class="form-group">
+              <label for="sel1">Er produktet aktivt?</label><br>
+              <select name="productActive" class="form-control" >
+                <option value="1">Ja</option>
+                <option value="0">Nei</option>
+                </select>
+              </div>
             <div class="form-group">
              <hr />
             </div>
-
             <div class="form-group">
              <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Lagre</button>
             </div>
-
-            <div class="form-group">
-             <hr />
+            <hr>
+            <div class="form-group text-center">
+              <a data-toggle="collapse" href="#collapse">Lukk</a>
             </div>
-        </div>
-
     </form>
     </div>
-
+    </div>
+    </div>
+    <hr>
 </div>
-
 </body>
 </html>
 <?php ob_end_flush(); ?>

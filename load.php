@@ -1,6 +1,6 @@
 <?php include'includes/dbConnect.php';
 
-$sql = "SELECT productID, productImage, productPrice, productName, productDesc, productTime, productRating FROM products";
+$sql = "SELECT productID, productImage, productPrice, productName, productDesc, productTime, productRating FROM products WHERE productActive ='1' ORDER BY productID DESC";
 $result = mysql_query($sql);
 if (mysql_num_rows($result) > 0) {
     // output data of each row
@@ -90,7 +90,7 @@ if (mysql_num_rows($result) > 0) {
            }
        }*/
 
-        echo "</p></div></div></div>";
+        echo "</p></div></div></div></a>";
     }
 
 } else {

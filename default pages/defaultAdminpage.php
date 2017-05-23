@@ -8,9 +8,7 @@
  // select loggedin users detail
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
  $userRow=mysql_fetch_array($res);
-?>
 
-<?php
 include'includes/head.php';
 include'includes/navbar.php';
 // direct users if they do not have 1 as their user stat.

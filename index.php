@@ -18,21 +18,45 @@
 <?php
 include'includes/head.php';
 include'includes/navbar.php'; ?>
+<script>
+function load() {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","load.php",true);
+        xmlhttp.send();}
+</script>
 
-<body>
+<body onload="load();">
 
   <div id="wrapper">
-    <div class="container top-buffer-30">
-      <div class="page-header">
-        <h3>Standard side</h3>
-      </div>
+    <div class="container top-buffer-40">
       <div class="row">
         <div class="col-lg-12">
-          <h1>Standard side som alle kan se om man har en bruker eller ikke  </h1>
+          <h1>High quality memes</h1>
         </div>
       </div>
       <div class="container">
-        <?php include'load.php'; ?>
+        <?php //include'load.php'; ?>
+        <script >
+        window.setInterval(function(){
+          load();
+
+        }, 5000);
+
+        </script>
+        <br>
+        <div id="txtHint"></div>
+
 
     </div>
   </div>

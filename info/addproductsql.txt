@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `productStock` int(8) NOT NULL,
   `productImage` varchar(255) NOT NULL,
   `productRating` DECIMAL(10,0) NOT NULL,
+  `productActive` int(1) NOT NULL,
   `productTime` TIMESTAMP NOT NULL,
   PRIMARY KEY (`productID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
