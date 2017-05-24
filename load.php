@@ -21,7 +21,7 @@ if (mysql_num_rows($result) > 0) {
        <div class='thumbnail'> <a href='site.php?". $row["productID"]."'> <img src='". $row["productImage"] ."' alt=''></a>
        <div class='caption'>
        <h4 class='pull-right'>" . $row["productPrice"].",-</h4>
-       <h4><a href='site.php?". $row["productName"]."'>" . $row["productName"] . "</a> </h4>
+       <h4><a href='site.php?". $row["productID"]."'>" . $row["productName"] . "</a> </h4>
        <p class='text'>" . $row["productDesc"] . "</p>
        </div>
        <div class='ratings'> <p class='pull-right bottom-align-text'>Added " . $row["productTime"] . "</p>

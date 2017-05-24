@@ -6,23 +6,25 @@
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
  $userRow=mysql_fetch_array($res);
 
+ $url = "$_SERVER[REQUEST_URI]";
+ $url = str_replace("/delete.php?","",$url);
+
+ $sql=mysql_query("SELECT * FROM products WHERE productID=".$url);
+ $product=mysql_fetch_array($sql);
+
  if (!isset($_SESSION['user'])) {
    header("Location: indexd.php");
  }else if ($userRow['userStat'] != '1') {
    header("Location: index.php");}
-
-   $url = "$_SERVER[REQUEST_URI]";
-   $url = str_replace("/delete.php?","",$url);
-
    $query = "DELETE FROM products WHERE productID=".$url;
    $res = mysql_query($query);
 
    if ($res) {
          $errTyp = "success";
-     $errMSG ="Successfully deleted record with id: ".$url;
+     $errMSG ="  Fjernet produktet med <u>ID</u>: ".$product['productName']."  <u>Navn</u>:   ".$product['productName'];
   }else {
     $errTyp = "danger";
-    $errMSG ="Error deleting record with id: ".$url;
+    $errMSG ="  Fikk ikke fjernet produktet med <u>ID</u>: ".$product['productName']."  <u>Navn</u>:   ".$product['productName'];
   }
 
 
