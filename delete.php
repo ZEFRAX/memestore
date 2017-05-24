@@ -11,6 +11,8 @@
 
  $sql=mysql_query("SELECT * FROM products WHERE productID=".$url);
  $product=mysql_fetch_array($sql);
+ 
+ $file = $product['productImage'];
 
  if (!isset($_SESSION['user'])) {
    header("Location: indexd.php");
@@ -43,6 +45,14 @@
         <a  style="font-size: 30px;" href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
        <span style="font-size: 30px; position: relative; bottom: 20px; "class="<?php if ($errTyp=="success") { echo "glyphicon glyphicon-floppy-saved";}else { echo "glyphicon glyphicon-floppy-remove";}?> text-center"></span>   <?php echo $errMSG; ?>
                    </div>
+                   <?php if (!unlink($file))
+                   {
+                     echo ("Error deleting $file");
+                   }
+                   else
+                   {
+                     echo ("Deleted $file");
+                   }?>
                 </div>
                 <div class="row">
                   <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 ">
