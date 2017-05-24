@@ -40,7 +40,7 @@ include'includes/navbar.php'; ?>
 
                     function validation() {
                       var txt;
-                      var r = confirm("Er du sikker på at du vil slette dette produktet?\nVelg Ok eller Avbryt!");
+                      var r = confirm("Er du sikker på at du vil slette  <?php echo $product['productName']?>?\nVelg Ok eller Avbryt!");
                       if (r == true) {
                       var php_var = "<?php echo $product["productID"] ?>";
                         window.location.replace('delete.php?'+ php_var);
