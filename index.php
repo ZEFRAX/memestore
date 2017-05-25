@@ -19,6 +19,10 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 <script>
+window.setInterval(function(){
+  load();
+
+}, 5000);
 function load() {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -47,17 +51,8 @@ function load() {
       </div>
       <div class="container">
         <?php //include'load.php'; ?>
-        <script >
-        window.setInterval(function(){
-          load();
-
-        }, 5000);
-
-        </script>
         <br>
         <div id="txtHint"></div>
-
-
     </div>
   </div>
 </body>
