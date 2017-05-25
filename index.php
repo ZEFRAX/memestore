@@ -10,7 +10,7 @@
  #}
  // select loggedin users detail
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow=mysql_fetch_array($res);
+ $userRow=@mysql_fetch_array($res);
 
 ?>
 <!DOCTYPE html>
@@ -21,8 +21,8 @@ include'includes/navbar.php'; ?>
 <script>
 window.setInterval(function(){
   load();
+}, 50000);
 
-}, 5000);
 function load() {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -38,9 +38,29 @@ function load() {
         };
         xmlhttp.open("GET","load.php",true);
         xmlhttp.send();}
+
+
+        function addToCart(val2){
+          if (window.XMLHttpRequest) {
+              // code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp = new XMLHttpRequest();
+          } else {
+              // code for IE6, IE5
+              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+              }
+          };
+          xmlhttp.open("GET","addtocart.php?"+val2,true);
+          xmlhttp.send();
+
+        }
+
+
 </script>
 
-<body onload="load();">
+<body onload="load(); cartload();">
 
   <div id="wrapper">
     <div class="container top-buffer-40">
@@ -50,8 +70,11 @@ function load() {
         </div>
       </div>
       <div class="container">
-        <?php //include'load.php'; ?>
-        <br>
+        <?php //include'load.php';
+
+
+
+  ?>
         <div id="txtHint"></div>
     </div>
   </div>

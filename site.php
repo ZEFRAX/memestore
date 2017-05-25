@@ -4,7 +4,7 @@
  require_once 'includes/dbConnect.php';
  // select loggedin users detail
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow=mysql_fetch_array($res);
+ $userRow=@mysql_fetch_array($res);
 
  $link = "$_SERVER[REQUEST_URI]";
  $link = str_replace("/site.php?","",$link);
@@ -124,7 +124,7 @@ include'includes/navbar.php'; ?>
 
                     <!-- Botones de compra -->
                     <div class="section" style="padding-bottom:20px;">
-                        <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Buy this shit</button>
+                        <a href="addtocart.php?id=<?php echo $product['productID'] ?>"><button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Buy me</button></a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                       <h6 class="title-price"><small>Tags</small></h6>

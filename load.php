@@ -16,81 +16,93 @@ if (mysql_num_rows($result) > 0) {
         $count = $row["productRating"];
 
         $additionalClass = ($i % 3) == 0 ? " <div class='row'>" : "";
-        $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";
-        echo "<div class=' col-xs-4 col-sm-4 col-lg-4 col-md-4'>
-       <div class='thumbnail'> <a href='site.php?". $row["productID"]."'> <img src='". $row["productImage"] ."' alt=''></a>
-       <div class='caption'>
-       <h4 class='pull-right'>" . $row["productPrice"].",-</h4>
-       <h4><a href='site.php?". $row["productID"]."'>" . $row["productName"] . "</a> </h4>
-       <p class='text'>" . $row["productDesc"] . "</p>
-       </div>
-       <div class='ratings'> <p class='pull-right bottom-align-text'>Added " . $row["productTime"] . "</p>
-       <p class='bottom-align-stars'>";
-       // Rating System
-       switch($count) {
-           case 0:
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               break;
-           case 1:
-               echo $element;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               break;
-           case 2:
-               echo $element;
-               echo $element;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               break;
-           case 3:
-               echo $element;
-               echo $element;
-               echo $element;
-               echo $emptyElement;
-               echo $emptyElement;
-               break;
-           case 4:
-               echo $element;
-               echo $element;
-               echo $element;
-               echo $element;
-               echo $emptyElement;
-               break;
-           case 5:
-               echo $element;
-               echo $element;
-               echo $element;
-               echo $element;
-               echo $element;
-               break;
-           default:
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               echo $emptyElement;
-               break;
-       }
-       /*
-       if ($count < 6 && $count > 0) {
-           for ($a = 0; $a < $count; $a++) {
-               echo $element;
-           }
-       }
-       else {
-           for ($a = 0; $a < $emptyCount; $a++) {
-               echo $emptyElement;
-           }
-       }*/
+        $additionalClass2 = ($e % 3) == 0 ? " </div>" : "";?>
 
-        echo "</p></div></div></div></a>";
+            <div class="col-sm-4">
+                <div class="col-item">
+                    <div class="photo">
+                        <img style="overflow:hidden; width:100%;"src="<?php echo $row["productImage"] ?>"  class="img-responsive" alt="a" />
+                    </div>
+                    <div class="info">
+                        <div class="row">
+                            <div class="price col-md-6">
+                                <h5>
+                                    <?php echo $row["productName"] ?></h5>
+                                <h5 class="price-text-color">
+                                    <?php echo $row["productPrice"] ?>,- Kr</h5>
+                            </div>
+                            <div class="rating hidden-sm col-md-6">
+                                     <?php
+                                       // Rating System
+                                       switch($count) {
+                                           case 0:
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               break;
+                                           case 1:
+                                               echo $element;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               break;
+                                           case 2:
+                                               echo $element;
+                                               echo $element;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               break;
+                                           case 3:
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               break;
+                                           case 4:
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               echo $emptyElement;
+                                               break;
+                                           case 5:
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               echo $element;
+                                               break;
+                                           default:
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               echo $emptyElement;
+                                               break;
+                                       }
+                                     ?>
+                            </div>
+                        </div>
+                        <div class="separator clear-left">
+                            <p class="btn btn-add">
+                                <i class="glyphicon glyphicon-shopping-cart-"></i><a onclick="addToCart(<?php echo $row['productID']; ?>)" class="hidden-sm">Kjøp</a></p>
+                            <p class=" btn btn-details">
+                                <i class="fa fa-list"></i><a href="site.php?<?php echo $row["productID"] ?>" class="hidden-sm">Fler detaljer</a></p>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+       <p class='bottom-align-stars'>;
+<?php
     }
 
 } else {

@@ -2,12 +2,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
      <div class="container">
        <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
          <a class="navbar-brand" href="index.php">MemeStore</a>
        </div>
        <?php $site = $_SERVER['REQUEST_URI']; ?>
@@ -17,8 +11,6 @@
          <ul class="nav navbar-nav">
            <!--replace                       vvvvvv with the site that you are on.    vvvvvvv-->
            <li class="<?php if ($site == "/index.php") {echo "active";} ?>"><a href="index.php">Hjem</a></li>
-           <li class="<?php if ($site == "/register.php") {echo "active";} ?>"><a href="register.php">Registrer</a></li>
-           <li class="<?php if ($site == "/login.php") {echo "active";} ?>"><a href="login.php">Logg inn</a></li>
          </ul>
          <!-- Navbar dropdown meny-->
          <ul class="nav navbar-nav navbar-right">
@@ -36,94 +28,103 @@
            </li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
+
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-cart" role="menu">
-            <li class="top-buffer-10 text-center" href="">Handlevogn</li>
-            <li class="divider"></li>
+          <a href="#" class="dropdown" > <i class="glyphicon glyphicon-shopping-cart"></i></span> Handlevogn <span id="count"class="badge">0</span></a>
+          <ul class="dropdown-content">
+            <div class="container2">
+              <div class="shopping-cart">
+              <div class="shopping-cart-header">
+                <i class="glyphicon glyphicon-shopping-cart"></i></span> Handlevogn <span id="count1" class="badge">0</span>
+                <div style="float:right;"class="shopping-cart-total">
+                  <span class="lighter-text">Total:</span>
+                  <span id="total"class="main-color-text">0.-</span>
+                </div>
+              </div>
+              <hr>
+            <?php  ?>
+            <script>
+            function deleteFromCart(val){
+              if (window.XMLHttpRequest) {
+                  // code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp = new XMLHttpRequest();
+              } else {
+                  // code for IE6, IE5
+                  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+              }
+              xmlhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                  }
+              };
+              xmlhttp.open("GET","deletefromcart.php?"+val,true);
+              xmlhttp.send();
 
-              <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>23$</span>
-                            <span>Antall: 1</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                    </span>
-                </span>
-              </li>
-              <li>
-                  <span class="item">
-                    <span class="item-left">
-                        <img src="http://lorempixel.com/50/50/" alt="" />
-                        <span class="item-info">
-                            <span>Item name</span>
-                            <span>23$</span>
-                            <span>Antall: 1</span>
-                        </span>
-                    </span>
-                    <span class="item-right">
-                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                    </span>
-                </span>
-              </li>
+            }
+            function getSum(total, num) {
+              return total + num;
+            }
+            function total(){
+              if (window.XMLHttpRequest) {
+                  // code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp = new XMLHttpRequest();
+              } else {
+                  // code for IE6, IE5
+                  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+              }
+              xmlhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    var b = this.responseText.split(',').map(Number);
+
+                      document.getElementById("total").innerHTML = b.reduce(getSum)+" Kr";
+                  }
+              };
+              xmlhttp.open("GET","total.php",true);
+              xmlhttp.send();}
+
+
+                    function cartload() {
+                            if (window.XMLHttpRequest) {
+                                // code for IE7+, Firefox, Chrome, Opera, Safari
+                                xmlhttp = new XMLHttpRequest();
+                            } else {
+                                // code for IE6, IE5
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("cartload").innerHTML = this.responseText;
+                                }
+                            };
+                            xmlhttp.open("GET","cartload.php",true);
+                            xmlhttp.send();}
 
 
 
-              <li class="divider"></li>
-              <li><a class="text-center" href="">View Cart</a></li>
+            </script>
+
+
+            <div id="cartload"></div>
+            <script type="text/javascript">
+            window.setInterval(function(){
+              cartload();
+              total();
+            }, 1000);
+            window.setInterval(function(){
+              var count = $('div[id^=item]').length
+              document.getElementById("count").innerHTML = count;
+              document.getElementById("count1").innerHTML = count;
+            }, 1);
+            </script>
+
+
+            <div class="text-center">
+              <div class="btn btn-success">Vis handlevogn</div></div>
+              </div>
+            </div> <!--end of container-->
           </ul>
+
         </li>
       </ul>
-      <style media="screen">
-      ul.dropdown-cart{
-  min-width:250px;
-}
-ul.dropdown-cart li .item{
-  display:block;
-  padding:3px 10px;
-  margin: 3px 0;
-}
-ul.dropdown-cart li .item:hover{
-  background-color:#f3f3f3;
-}
-ul.dropdown-cart li .item:after{
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-ul.dropdown-cart li .item-left{
-  float:left;
-}
-ul.dropdown-cart li .item-left img,
-ul.dropdown-cart li .item-left span.item-info{
-  float:left;
-}
-ul.dropdown-cart li .item-left span.item-info{
-  margin-left:10px;
-}
-ul.dropdown-cart li .item-left span.item-info span{
-  display:block;
-}
-ul.dropdown-cart li .item-right{
-  float:right;
-}
-ul.dropdown-cart li .item-right button{
-  margin-top:14px;
-}
-      </style>
-
-
-
        </div><!--/.nav-collapse -->
      </div>
    </nav>
