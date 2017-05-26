@@ -229,7 +229,6 @@ if (file_exists($target_file)) {
 
 
             <script type="text/javascript">
-
             function update() {
               var fullPath = document.getElementById('fileToUpload').value;
               var filenamepath = fullPath.replace(/^.*[\\\/]/, '')
@@ -240,12 +239,9 @@ if (file_exists($target_file)) {
                 document.getElementById("fileToUpload").value = "";
               }else {
                 document.getElementById("warning").innerHTML = "";
-
             }
-
-
-            }</script>
-
+            }
+            </script>
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-picture"><span id="checkdiv" class=""></span></span></span>
@@ -253,6 +249,7 @@ if (file_exists($target_file)) {
               </div>
               <span id="warning" class= "text-danger"><?php echo $productImageError; ?></span>
             </div>
+
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
