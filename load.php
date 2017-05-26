@@ -21,7 +21,7 @@ if (mysql_num_rows($result) > 0) {
             <div class="col-sm-4">
                 <div class="col-item">
                     <div class="photo">
-                        <img style="overflow:hidden; width:100%;"src="<?php echo $row["productImage"] ?>"  class="img-responsive" alt="a" />
+                        <img style=""src="<?php echo $row["productImage"] ?>"  class="img-responsive" alt="a" />
                     </div>
                     <div class="info">
                         <div class="row">
