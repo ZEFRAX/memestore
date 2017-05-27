@@ -172,11 +172,11 @@ height: 500px;
     border: 1px solid #E1E1E1;
     border-radius: 5px;
     background: #FFF;
+
 }
 .col-item .photo img
 {
     margin: 4px auto;
-    width: 100%;
 }
 
 .col-item .info

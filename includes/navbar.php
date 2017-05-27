@@ -118,7 +118,7 @@
 
 
             <div class="text-center">
-              <div class="btn btn-success">Vis handlevogn</div></div>
+              <a href="checkout.php"><div class="btn btn-success">Vis handlevogn</div></a></div>
               </div>
             </div> <!--end of container-->
           </ul>
