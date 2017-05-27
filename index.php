@@ -21,7 +21,7 @@ include'includes/navbar.php'; ?>
 <script>
 window.setInterval(function(){
   load();
-}, 50000);
+}, 5000);
 
 function load() {
         if (window.XMLHttpRequest) {
