@@ -19,7 +19,7 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 
-<body>
+<body onload="total();">
   <div id="wrapper">
     <div class="container top-buffer-30">
       <div class="page-header">
@@ -124,7 +124,7 @@ include'includes/navbar.php'; ?>
 
                     <!-- Botones de compra -->
                     <div class="section" style="padding-bottom:20px;">
-                        <a href="addtocart.php?id=<?php echo $product['productID'] ?>"><button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Buy me</button></a>
+                        <a><button onclick="addToCart(<?php echo $product['productID']; ?>);total(); "class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Kjøp</button></a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                       <h6 class="title-price"><small>Tags</small></h6>
@@ -158,4 +158,22 @@ include'includes/navbar.php'; ?>
   </div>
 </body>
 </html>
+<script type="text/javascript">
+function addToCart(val2){
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      }
+  };
+  xmlhttp.open("GET","addtocart.php?"+val2,true);
+  xmlhttp.send();
+
+}
+</script>
 <?php ob_end_flush(); ?>

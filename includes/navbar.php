@@ -78,7 +78,9 @@
                   if (this.readyState == 4 && this.status == 200) {
                     var b = this.responseText.split(',').map(Number);
 
+                    cartload();
                       document.getElementById("total").innerHTML = b.reduce(getSum)+" Kr";
+
                   }
               };
               xmlhttp.open("GET","total.php",true);
@@ -116,14 +118,14 @@
             </div>
             <script type="text/javascript">
             window.setInterval(function(){
-              cartload();
               total();
-            }, 1000);
+
+            }, 5000);
             window.setInterval(function(){
               var count = $('div[id^=item]').length
               document.getElementById("count").innerHTML = count;
               document.getElementById("count1").innerHTML = count;
-            }, 1);
+            }, 50);
             </script>
 
 

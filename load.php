@@ -21,14 +21,17 @@ if (mysql_num_rows($result) > 0) {
 
             <div class="col-sm-4">
                 <div class="col-item">
+                  <a href="site.php?<?php echo $row["productID"] ?>">
                     <div style="width:100%; max-height: 300px; overflow:auto;"class="photo">
                         <img style="  "src="<?php echo $row["productImage"] ?>"  class="img-responsive" alt="a" />
                     </div>
+                    </a>
                     <div class="info">
                         <div class="row">
                             <div class="price col-md-6">
-                                <h5>
-                                    <?php echo $row["productName"] ?></h5>
+                              <a href="site.php?<?php echo $row["productID"] ?>">
+                                <h4 style="color:black;">
+                                    <?php echo $row["productName"] ?></h4></a>
                                 <h5 class="price-text-color">
                                     <?php echo $row["productPrice"] ?>,- Kr</h5>
                             </div>
@@ -91,7 +94,7 @@ if (mysql_num_rows($result) > 0) {
                         </div>
                         <div class="separator clear-left">
                             <p class="btn btn-add">
-                                <i class="glyphicon glyphicon-shopping-cart-"></i><a onclick="addToCart(<?php echo $row['productID']; ?>)" class="hidden-sm">Kjøp</a></p>
+                                <i class="glyphicon glyphicon-shopping-cart-"></i><a onclick="addToCart(<?php echo $row['productID']; ?>); total();" class="hidden-sm">Kjøp</a></p>
                             <p class=" btn btn-details">
                                 <i class="fa fa-list"></i><a href="site.php?<?php echo $row["productID"] ?>" class="hidden-sm">Fler detaljer</a></p>
                         </div>

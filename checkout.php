@@ -115,6 +115,7 @@ include'includes/navbar.php'; ?>
 function removejs2(rem2) {
   var del2 = document.getElementById(rem2);
     del2.remove();
+    checkload()
 }
 
 
