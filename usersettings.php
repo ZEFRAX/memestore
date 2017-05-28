@@ -32,6 +32,7 @@ include'includes/navbar.php'; ?>
         <div class="col-lg-12">
         <h1>Standard side som de med en bruker kan se.</h1>
         </div>
+        <?php if( isset($_SESSION['user']) ) {echo $userRow['userId'];}?>
         </div>
 
     </div>

@@ -43,6 +43,9 @@
               </div>
               <hr>
             <?php  ?>
+            <div style="max-height: 800px; overflow:scroll; overflow-x: hidden;"class="">
+
+
             <script>
             function deleteFromCart(val){
               if (window.XMLHttpRequest) {
@@ -99,11 +102,18 @@
                             xmlhttp.send();}
 
 
+                            function removejs(rem) {
+                              var del = document.getElementById(rem);
+                                del.remove();
+                            }
+
+
 
             </script>
 
 
             <div id="cartload"></div>
+            </div>
             <script type="text/javascript">
             window.setInterval(function(){
               cartload();
