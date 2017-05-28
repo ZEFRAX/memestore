@@ -10,6 +10,10 @@
    $errMSG = "Bestillingen er lagt til. Ditt bestillings nr er " .htmlspecialchars($_GET["ordercomplete"]);
    $errTyp = "success";
  }
+ if (isset($_GET['usermustbelogedin'])) {
+   $errMSG = "Du må loggge inn for å kjøpe varer.";
+   $errTyp = "danger";
+ }
 
 
  // if session is not set this will redirect to login page
@@ -31,7 +35,7 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 
-<body onload="totalc(); checkload()">
+<body onload="totalc(); checkload(); total();">
  <div id="wrapper">
 
  <div class="container top-buffer">
@@ -79,6 +83,7 @@ include'includes/navbar.php'; ?>
 				</div>
 				<div class="panel-body">
           <div id="checkload"></div>
+          <div id="emptycart"></div>
 					<div class="row">
 						<div class="text-center">
 							<div class="col-xs-9">
@@ -98,8 +103,8 @@ include'includes/navbar.php'; ?>
 							<h4 class="text-right">Total: <strong id="totalc">0 Kr</strong></h4>
 						</div>
 						<div class="col-xs-3">
-              <a href="<?php if( !isset($_SESSION['user']) ) { echo "login.php";}else{ echo"buy.php";}?>">
-							<button type="button" class="btn btn-success btn-block">
+              <a id="atag" href="<?php if( !isset($_SESSION['user']) ) { echo "login.php";}else{ echo"buy.php";}?>">
+							<button id="btag"type="button" class="btn btn-success btn-block">
 								<?php if( !isset($_SESSION['user']) ) { echo "Logg inn";}else {echo "Kjøp"; }?>
 							</button>
               </a>
@@ -109,15 +114,23 @@ include'includes/navbar.php'; ?>
 			</div>
     </div>
     </div>
+    <?php
+ ?>
+
   </body>
 </html>
-<script type="text/javascript">
+<script>
 function removejs2(rem2) {
   var del2 = document.getElementById(rem2);
     del2.remove();
-    checkload()
+    totalc();
+    total();
 }
-
+window.setInterval(function(){
+  var count = $('div[id^=item]').length
+  document.getElementById("count").innerHTML = count;
+  document.getElementById("count1").innerHTML = count;
+}, 500);
 
 function getSumc(total, num) {
   return total + num;
@@ -150,8 +163,13 @@ function totalc(){
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var b = this.responseText.split(',').map(Number);
-
+        checkload();
           document.getElementById("totalc").innerHTML = b.reduce(getSumc)+" Kr";
+          if (b.reduce(getSumc) == 0) {
+            document.getElementById("emptycart").innerHTML = "Handlekurven er tom.";
+            document.getElementById("atag").href = "index.php";
+            document.getElementById("btag").innerHTML = "Handle";
+          }
       }
   };
 

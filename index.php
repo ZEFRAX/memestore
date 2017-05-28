@@ -11,13 +11,26 @@
  // select loggedin users detail
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
  $userRow=@mysql_fetch_array($res);
-
 ?>
 <!DOCTYPE html>
 <html>
 <?php
 include'includes/head.php';
 include'includes/navbar.php'; ?>
+<body onload="load(); cartload();">
+  <div id="wrapper">
+    <div class="container top-buffer-40">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>High quality memes</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div id="txtHint"></div>
+    </div>
+  </div>
+</body>
+</html>
 <script>
 window.setInterval(function(){
   load();
@@ -56,28 +69,5 @@ function load() {
           xmlhttp.send();
 
         }
-
-
 </script>
-
-<body onload="load(); cartload();">
-
-  <div id="wrapper">
-    <div class="container top-buffer-40">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1>High quality memes</h1>
-        </div>
-      </div>
-      <div class="container">
-        <?php //include'load.php';
-
-
-
-  ?>
-        <div id="txtHint"></div>
-    </div>
-  </div>
-</body>
-</html>
 <?php ob_end_flush(); ?>

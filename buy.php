@@ -2,6 +2,10 @@
 	session_start();
 include_once'includes/dbConnect.php';
 
+if( !isset($_SESSION['user']) ) {
+ header("Location: checkout.php?usermustbelogedin");
+ exit;}
+
 $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
 $userRow=mysql_fetch_array($res);
 $userid = $userRow['userId'];

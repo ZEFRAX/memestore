@@ -25,7 +25,7 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
          <div class="col-xs-4">
          </div>
          <div class="col-xs-2">
-           <button onclick="removejs2(<?php echo $r['productID']; ?>1); deleteFromCart(<?php echo $r['productID']; ?>)" type="button" class="btn btn-link btn-xs">
+           <button onclick="removejs2(<?php echo $r['productID']; ?>1); deleteFromCart(<?php echo $r['productID'];?>); totalc(); total();" type="button" class="btn btn-link btn-xs">
              <span class="glyphicon glyphicon-trash"> </span>
            </button>
          </div>

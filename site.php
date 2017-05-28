@@ -19,7 +19,7 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 
-<body onload="total();">
+<body onload="cartload(); total();">
   <div id="wrapper">
     <div class="container top-buffer-30">
       <div class="page-header">
@@ -124,7 +124,7 @@ include'includes/navbar.php'; ?>
 
                     <!-- Botones de compra -->
                     <div class="section" style="padding-bottom:20px;">
-                        <a><button onclick="addToCart(<?php echo $product['productID']; ?>);total(); "class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Kjøp</button></a>
+                        <a><button onclick="addToCart(<?php echo $product['productID']; ?>); cartload(); total(); totalc();"class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Kjøp</button></a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                       <h6 class="title-price"><small>Tags</small></h6>

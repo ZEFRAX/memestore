@@ -93,8 +93,9 @@ if (mysql_num_rows($result) > 0) {
                             </div>
                         </div>
                         <div class="separator clear-left">
+                          <a onclick="addToCart(<?php echo $row['productID']; ?>); cartload(); total();" class="hidden-sm">
                             <p class="btn btn-add">
-                                <i class="glyphicon glyphicon-shopping-cart-"></i><a onclick="addToCart(<?php echo $row['productID']; ?>); total();" class="hidden-sm">Kjøp</a></p>
+                                <i class="glyphicon glyphicon-shopping-cart-"></i>Kjøp</p></a>
                             <p class=" btn btn-details">
                                 <i class="fa fa-list"></i><a href="site.php?<?php echo $row["productID"] ?>" class="hidden-sm">Fler detaljer</a></p>
                         </div>
