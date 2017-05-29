@@ -112,12 +112,6 @@ include'includes/navbar.php'; ?>
                     <h6 class="title-price"><small>Pris</small></h6>
                     <h3 style="margin-top:0px;"><?php echo $product["productPrice"] ?>.- NOK</h3>
                     <div class="section" style="padding-bottom:20px;">
-                        <h6 class="title-attr"><small>Antall</small></h6>
-                        <div>
-                            <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
-                            <input value="1"/><a href="#"></a>
-                            <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
-                        </div>
                     </div>
 
                     <!-- Botones de compra -->
