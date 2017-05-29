@@ -17,7 +17,7 @@
 <?php
 include'includes/head.php';
 include'includes/navbar.php'; ?>
-<body onload="load(); cartload();">
+<body id="body"onload="load(); cartload(); isColor();">
   <div id="wrapper">
     <div class="container top-buffer-40">
       <div class="row">
@@ -33,7 +33,6 @@ include'includes/navbar.php'; ?>
 </html>
 <script>
 window.setInterval(function(){
-  load();
 }, 30000);
 function load() {
         if (window.XMLHttpRequest) {
@@ -67,6 +66,14 @@ function load() {
           xmlhttp.open("GET","addtocart.php?"+val2,true);
           xmlhttp.send();
 
+        }
+        function isColor() {
+          if(localStorage.getItem('color') == '0') {
+            $("#body").css('background-color','#161616');
+            document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+          }else {
+            $("#body").css('background-color','white');}
+            document.getElementById("onoff").innerHTML = localStorage.getItem("color");
         }
 </script>
 <?php ob_end_flush(); ?>

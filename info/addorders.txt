@@ -1,7 +1,9 @@
 CREATE TABLE IF NOT EXISTS `orders` (
   `orderId` int(50) NOT NULL AUTO_INCREMENT,
   `userId` int(50) NOT NULL,
+  `orderNumber` int(50) NOT NULL,
   `productId` int(50) NOT NULL,
   `productPriceAt` int(50) NOT NULL,
-  `orderTotal` int(50) NOT NULL
+  `orderTotal` int(50) NOT NULL,
+  `orderTime` TIMESTAMP NOT NULL,
   PRIMARY KEY (`orderID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

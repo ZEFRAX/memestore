@@ -35,7 +35,7 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 
-<body onload="totalc(); checkload(); total();">
+<body id="body"onload="totalc(); checkload(); total(); isColor();">
  <div id="wrapper">
 
  <div class="container top-buffer">
@@ -63,7 +63,7 @@ include'includes/navbar.php'; ?>
                       <?php
          } ?>
 
-      <div class="panel panel-info top-buffer-20">
+      <div id="border"class="panel panel-info top-buffer-20">
 
 				<div class="panel-heading">
 					<div class="panel-title">
@@ -176,6 +176,20 @@ function totalc(){
 
   xmlhttp.open("GET","total.php",true);
   xmlhttp.send();}
+  function isColor() {
+    if(localStorage.getItem('color') == '0') {
+      $("#body").css('background-color','#161616');
+      $(".panel-body").css('background-color','#1c1c1c');
+      $(".panel-heading").css('background-color','#222');
+      $(".panel-footer").css('background-color','#222');
+      $("#border").css('border','#9d9d9d');
+      $(".hr").css('color','#9d9d9d');
+
+      document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+    }else {
+      $("#body").css('background-color','white');}
+      document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+  }
 
 </script>
 

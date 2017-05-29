@@ -19,7 +19,7 @@
 include'includes/head.php';
 include'includes/navbar.php'; ?>
 
-<body onload="cartload(); total();">
+<body id="body"onload="cartload(); total(); isColor();">
   <div id="wrapper">
     <div class="container top-buffer-30">
       <div class="page-header">
@@ -172,6 +172,14 @@ function addToCart(val2){
   xmlhttp.open("GET","addtocart.php?"+val2,true);
   xmlhttp.send();
 
+}
+function isColor() {
+  if(localStorage.getItem('color') == '0') {
+    $("#body").css('background-color','#161616');
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+  }else {
+    $("#body").css('background-color','white');}
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
 }
 </script>
 <?php ob_end_flush(); ?>

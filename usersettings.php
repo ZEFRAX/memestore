@@ -13,7 +13,7 @@
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
  $userRow=mysql_fetch_array($res);
 
- $sql = ("SELECT DISTINCT orderNumber, orderTime, orderTotal FROM orders WHERE userId=".$_SESSION['user']);
+ $sql = ("SELECT COUNT(orderNumber), orderTime, orderTotal, orderNumber  FROM orders WHERE userId=".$_SESSION['user'] ." GROUP BY orderNumber ORDER BY orderTime DESC");
  $result = mysql_query($sql);
 
 
@@ -25,13 +25,13 @@ include'includes/head.php';
 include'includes/navbar.php'; ?>
 
 <html>
-<body id="body"onload="counttr();">
+<body id="body"onload="cartload(); total(); counttr(); isColor();">
  <div id="wrapper">
 
  <div class="container top-buffer-40">
         <div class="row">
         <div class="col-lg-12">
-        <h1>Bruker instillinger</h1>
+        <h1>Min side</h1>
         </div>
         </div>
         <div class="panel panel-default">
@@ -41,7 +41,7 @@ include'includes/navbar.php'; ?>
             </h4>
           </div>
           <div id="collapse" class="collapse panel-body">
-            <table class="table table-striped">
+            <table class="table">
               <thead>
                 <tr>
                   <th>Status</th>
@@ -72,6 +72,7 @@ include'includes/navbar.php'; ?>
                }, function(){
                  $(this).css("background-color", "white");
                });
+
                </script>
              </tbody>
            </table>
@@ -83,7 +84,7 @@ include'includes/navbar.php'; ?>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" href="#settings">Instillinger</a>
+          <a data-toggle="collapse" href="#settings">Innstillinger</a>
         </h4>
       </div>
       <div id="settings" class="collapse panel-body">
@@ -118,6 +119,15 @@ include'includes/navbar.php'; ?>
 function counttr() {
   var numItems = $('.tr').length
   $("#badge").text(numItems);
+}
+
+function isColor() {
+  if(localStorage.getItem('color') == '0') {
+    $("#body").css('background-color','#161616');
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+  }else {
+    $("#body").css('background-color','white');}
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
 }
 </script>
 <?php ob_end_flush(); ?>

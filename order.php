@@ -53,7 +53,7 @@ include_once'includes/navbar.php'; ?>
         <div class="col-lg-12">
         <h1>Ordrenr <u><?php echo $link; ?></u></h1>
         </div>
-        <table class="table table-striped">
+        <table class="table">
           <thead>
             <tr>
               <th>Produkt bilde</th>

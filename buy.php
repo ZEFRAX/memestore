@@ -37,7 +37,7 @@ $orderNumber = $date + $userid;
       header("Location: checkout.php?ordercomplete=".$orderNumber);
       unset($_SESSION['cart']);
     }else {
-      header("Location: checkout.php?errorwithpurchase");
+			header("Location: checkout.php?errorwithpurchase");
 
     }
      ?>

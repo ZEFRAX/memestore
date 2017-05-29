@@ -1,8 +1,11 @@
 <?php include'includes/dbConnect.php';
 
-$q = $_get['q'];
+$q = "$_SERVER[REQUEST_URI]";
+$q = str_replace("/search.php?q=","",$q);
+$q = str_replace(' ', '+', $q);
 
-$sql = "SELECT * FROM products WHERE productName LIKE '%".$q."%' ORDER BY productID DESC";
+
+$sql = "SELECT * FROM products WHERE productName or productTag LIKE '%".$q."%' ORDER BY productID DESC";
 $result = mysql_query($sql);
 if (mysql_num_rows($result) > 0) {
     // output data of each row
@@ -107,12 +110,12 @@ if (mysql_num_rows($result) > 0) {
                 </div>
             </div>
        <p class='bottom-align-stars'>;
-      <?php echo $additionalClass2 ?>
+      <?php echo $additionalClass2.$sql;?>
 <?php
     }
 
 } else {
-    echo "Ingen resultater". $fg;
+    echo "Ingen resultater " .$sql;
 
 }
 mysql_close($conn);?>

@@ -1,0 +1,24 @@
+
+<?php include'includes/dbConnect.php';
+
+$q = "$_SERVER[REQUEST_URI]";
+$q = str_replace("/search.php?q=","",$q);
+$va = str_replace('20', '', $q);
+$va = str_replace('%', ',', $va);
+
+$va = explode(",", $va);
+foreach ($va as $key => $id) {
+  $dfg = "SELECT productID FROM products WHERE productName or productTag LIKE '%".$id."%' GROUP BY productID";
+  $asd = mysql_query($dfg);
+  if (mysql_num_rows($asd) > 0) {
+    while($sdf = mysql_fetch_array($asd)) {
+      print_r($sdf);
+      echo $dfg."<br>";
+
+    }
+  }else {
+    echo "Ingen resultater    ".$dfg ."<br>";
+  }
+}
+
+mysql_close($conn);?>

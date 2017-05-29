@@ -54,67 +54,6 @@ if ($userRow['userStat'] != '1') {
   $productActive = strip_tags($productActive);
   $productActive = htmlspecialchars($productActive);
 
-
-
-
-  /*// basic production name
-  if (empty($productName)) {
-   $error = true;
-   $productNameError = "Please enter your full productName.";
-  } else if (strlen($productName) < 3) {
-   $error = true;
-   $productNameError = "Name must have atleat 3 characters.";
- } else if (!preg_match("/^[a-zA-Z ÆØÅæøå ,.!?]+$/",$productName)) {
-   $error = true;
-   $productNameError = "productName must contain alphabets and space.";
-  }
-
-  //basic product Tag
-  if (empty($productTag)) {
-   $error = true;
-   $productTagError = "Please enter valid productTag address.";
- }else{
-   $productTag = strtolower($productTag);
-
- }
-
-  //basic product description
-  if (empty($productDesc)) {
-   $error = true;
-   $productDescError = "Please enter valid productDesc";
-  }
-
-  // basic productPrice validation
-  if (empty($productPrice)) {
-   $error = true;
-   $productPriceError = "Please enter your full productPrice.";
- } else if (!preg_match("/^[0-9]+$/",$productPrice)) {
-   $error = true;
-   $productPriceError = "productPrice must contain alphabets and space.";
-  }
-
-  // productStock validation
-  if (empty($productStock)){
-   $error = true;
-   $productStockError = "Skriv inn productStock";
- }
-
-// productStock validation
-if (empty($productRating)){
- $error = true;
- $productRatingError = "Skriv inn productRating";
-}else if (strlen($productRating) < 1) {
- $error = true;
- $productRatingError = "rating must have atleat 1 characters.";
-} else if ($productRating > 6) {
- $error = true;
- $productRatingError = "Må være 0 - 5 ";
-}
-
-
-
-
-*/
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -149,15 +88,13 @@ if (file_exists($target_file)) {
 }
 }
 
-
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Registrering</title>
 </head>
-<body>
+<body id="body" onload="isColor();">
 
 <div class="container top-buffer-60">
   <hr />
@@ -216,8 +153,6 @@ if (file_exists($target_file)) {
                 </div>
                 <span class="text-danger"><?php echo $productPriceError; ?></span>
             </div>
-
-
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-inbox"></span></span>
@@ -225,8 +160,6 @@ if (file_exists($target_file)) {
                 </div>
                 <span class="text-danger"><?php echo $productStockError; ?></span>
             </div>
-
-
             <script type="text/javascript">
             function update() {
               var fullPath = document.getElementById('fileToUpload').value;
@@ -281,4 +214,15 @@ if (file_exists($target_file)) {
 </div>
 </body>
 </html>
+<script>
+function isColor() {
+  if(localStorage.getItem('color') == '0') {
+    $("#body").css('background-color','#161616');
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+  }else {
+    $("#body").css('background-color','white');}
+    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+}
+
+</script>
 <?php ob_end_flush(); ?>

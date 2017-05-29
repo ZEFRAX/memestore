@@ -104,7 +104,7 @@ if (mysql_num_rows($result) > 0) {
                     </div>
                 </div>
             </div>
-       <p class='bottom-align-stars'>;
+       <p class='bottom-align-stars'>
       <?php echo $additionalClass2 ?>
 <?php
     }

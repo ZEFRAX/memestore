@@ -12,17 +12,17 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
      ?>
 
 <div id="<?php echo $r['productID']; ?>1">
-     <div class="row">
-       <div class="col-xs-2"><img style=" max-height:80px;" class="img-responsive" src="<?php echo $r['productImage']; ?>">
+     <div  class=" row ">
+       <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-2"><img style=" max-height:80px;" class="img-responsive" src="<?php echo $r['productImage']; ?>">
        </div>
-       <div class="col-xs-4">
+       <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-4">
          <h4 class="product-name"><strong><?php echo $r['productName']; ?></strong></h4><h4><small><?php echo $r['productDesc']; ?></small></h4>
        </div>
        <div class="col-xs-6">
-         <div class="col-xs-6 text-right">
+         <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-6 text-right">
            <h6><strong><?php echo $r['productPrice'];?><span class="text-muted"></span>,- Kr</strong></h6>
          </div>
-         <div class="col-xs-4">
+         <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-4">
          </div>
          <div class="col-xs-2">
            <button onclick="removejs2(<?php echo $r['productID']; ?>1); deleteFromCart(<?php echo $r['productID'];?>); totalc(); total();" type="button" class="btn btn-link btn-xs">
@@ -31,7 +31,7 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
          </div>
        </div>
      </div>
-     <hr>
+     <hr class="hr">
      </div>
     <?php
 }
