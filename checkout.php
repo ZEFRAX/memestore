@@ -43,7 +43,7 @@ include'includes/navbar.php'; ?>
      <div class="page-header"></div>
         <div class="row">
         <div class="col-lg-12">
-        <h1 class="text-center">Handlevogn</h1>
+        <h1 class="text-center">Sjekk ut</h1>
         </div>
       </div>
 
@@ -69,7 +69,7 @@ include'includes/navbar.php'; ?>
 					<div class="panel-title">
 						<div class="row">
 							<div class="col-xs-6">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Kurv</h5>
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Varer</h5>
 							</div>
 							<div class="col-xs-6">
                 <a href="index.php">

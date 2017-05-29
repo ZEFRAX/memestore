@@ -20,13 +20,13 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
        </div>
        <div class="col-xs-6">
          <div class="col-xs-6 text-right">
-           <h6><strong><?php echo $r['productPrice'];?><span class="text-muted"></span></strong></h6>
+           <h6><strong><?php echo $r['productPrice'];?><span class="text-muted"></span>,- Kr</strong></h6>
          </div>
          <div class="col-xs-4">
          </div>
          <div class="col-xs-2">
            <button onclick="removejs2(<?php echo $r['productID']; ?>1); deleteFromCart(<?php echo $r['productID'];?>); totalc(); total();" type="button" class="btn btn-link btn-xs">
-             <span class="glyphicon glyphicon-trash"> </span>
+             Fjern <span class="glyphicon glyphicon-trash"> </span>
            </button>
          </div>
        </div>

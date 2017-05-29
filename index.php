@@ -34,7 +34,7 @@ include'includes/navbar.php'; ?>
 <script>
 window.setInterval(function(){
   load();
-}, 5000);
+}, 30000);
 function load() {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari

@@ -12,12 +12,14 @@
            <!--replace                       vvvvvv with the site that you are on.    vvvvvvv-->
            <li class="<?php if ($site == "/index.php") {echo "active";} ?>"><a href="index.php">Hjem</a></li>
          </ul>
+
+
          <!-- Navbar dropdown meny-->
          <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Logg inn / Registrer";}?>&nbsp;<span class="caret"></span></a>
-             <ul class="dropdown-menu">
+               <span class="glyphicon glyphicon-user"></span>&nbsp;<?php if( isset($_SESSION['user']) ) {echo $userRow['userEmail'];}else{echo"Logg inn / Registrer";}?>&nbsp;<span class="caret"></span></a>
+               <ul class="dropdown-menu">
                <!-- Dynamic buttons based on user session -->
                <?php if ($userRow['userStat'] == '1') { echo "<li><a href='Kontrollpanel.php'><span class='glyphicon glyphicon-wrench'></span>&nbsp;Kontrollpanel</a></li>";} ?>
                <?php if( isset($_SESSION['user']) ) { echo "<li><a href='usersettings.php'><span class='glyphicon glyphicon-cog'></span>&nbsp;Bruker innstillinger</a></li>"; } ?>
@@ -27,8 +29,8 @@
              </ul>
            </li>
          </ul>
-         <ul class="nav navbar-nav navbar-right">
 
+         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown" > <i class="glyphicon glyphicon-shopping-cart"></i></span> Handlevogn <span id="count"class="badge">0</span></a>
           <ul class="dropdown-content">
@@ -127,16 +129,27 @@
               document.getElementById("count1").innerHTML = count;
             }, 50);
             </script>
-
-
             <div class="text-center">
               <a href="checkout.php"><div class="btn btn-success">Vis handlevogn</div></a></div>
               </div>
             </div> <!--end of container-->
           </ul>
-
         </li>
       </ul>
+      <div class="col-sm-6 col-md-3" style="float: right;">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <form class="navbar-form" role="search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Søk" name="q">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </li>
+       </ul>
+       </div>
        </div><!--/.nav-collapse -->
      </div>
    </nav>
