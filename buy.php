@@ -15,13 +15,23 @@ $items = $_SESSION['cart'];
 $cartitems = explode(",", $items);
 
 foreach ($cartitems as $id) {
+$sql=mysql_query( "SELECT productPrice FROM products WHERE productID = ".$id);
+  while($r = @mysql_fetch_assoc($sql)) {
+    $tot = $r['productPrice'] + $tot;
+}
+}
+
+foreach ($cartitems as $id) {
 $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
 $date = $today = date("dhis");
 $orderNumber = $date + $userid;
+
   while($r = @mysql_fetch_assoc($sql)) {
     $productId = $r['productID'];
+		$productPrice = $r['productPrice'];
 
-    $query = "INSERT INTO orders(userId, productId, orderNumber) VALUES('$userid', '$productId', '$orderNumber')";
+
+    $query = "INSERT INTO orders(userId, productId, orderNumber, productPriceAt, orderTotal) VALUES('$userid', '$productId', '$orderNumber', '$productPrice', '$tot')";
     $res = mysql_query($query);
     if ($res) {
       header("Location: checkout.php?ordercomplete=".$orderNumber);

@@ -270,3 +270,7 @@ height: 500px;
 {
     margin-right: 10px;
 }
+
+.click a {
+  display: block;
+}

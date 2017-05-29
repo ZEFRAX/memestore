@@ -10,7 +10,6 @@ foreach ($cartitems as $id) {
 $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
   while($r = @mysql_fetch_assoc($sql)) {
      ?>
-
 		 <div id="<?php echo $r['productID']; ?>">
        <div id="item" style="margin-bottom: 10px;  content: ""; display: table; clear: both;  box-sizing: border-box;"class="clearfix row"><a style="" href="site.php?<?php echo $r['productID']; ?>">
          <img style="float: left; margin-right: 12px; max-height: 50px;"src="<?php echo $r['productImage']; ?>" alt="item1" />

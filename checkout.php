@@ -7,7 +7,7 @@
    $errTyp = "danger";
  }
  if (isset($_GET['ordercomplete'])) {
-   $errMSG = "Bestillingen er lagt til. Ditt bestillings nr er " .htmlspecialchars($_GET["ordercomplete"]);
+   $errMSG = "Bestillingen er lagt til. Ditt bestillings nr er <a href='order.php?ordernr=".htmlspecialchars($_GET["ordercomplete"])."'><u>".htmlspecialchars($_GET["ordercomplete"])."</u></a>";
    $errTyp = "success";
  }
  if (isset($_GET['usermustbelogedin'])) {

@@ -50,14 +50,12 @@ include'includes/navbar.php'; ?>
                       document.getElementById("demo").innerHTML = txt;
                     }
                     </script>
-
                     <h5 style="font-size:20px">
                     <?php
                     $element = "<span class='glyphicon glyphicon-star'></span>";
                     $emptyElement = "<span class='glyphicon glyphicon-star-empty'></span>";
                     $emptyCount = 5;
                     $count = $product["productRating"];
-
             switch($count) {
                        case 0:
                            echo $emptyElement;

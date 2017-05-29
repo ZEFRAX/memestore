@@ -33,7 +33,6 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
      </div>
      <hr>
      </div>
-
     <?php
 }
 }

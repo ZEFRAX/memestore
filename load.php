@@ -98,8 +98,8 @@ if (mysql_num_rows($result) > 0) {
                                 <i class="glyphicon glyphicon-shopping-cart-"></i>Kjøp</p></a>
                             <p class=" btn btn-details">
                                 <i class="fa fa-list"></i><a href="site.php?<?php echo $row["productID"] ?>" class="hidden-sm">Fler detaljer</a></p>
-                        </div>
-                        <div class="clearfix">
+                              </div>
+                              <div class="clearfix">
                         </div>
                     </div>
                 </div>
