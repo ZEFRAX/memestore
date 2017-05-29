@@ -27,6 +27,7 @@ include'includes/navbar.php'; ?>
       </div>
       <div class="container">
         <div id="txtHint"></div>
+        <div id="txtHint2"></div>
     </div>
   </div>
 </body>

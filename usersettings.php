@@ -13,7 +13,7 @@
  $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
  $userRow=mysql_fetch_array($res);
 
- $sql = ("SELECT COUNT(orderNumber), orderTime, orderTotal, orderNumber  FROM orders WHERE userId=".$_SESSION['user'] ." GROUP BY orderNumber ORDER BY orderTime DESC");
+ $sql = ("SELECT COUNT(orderNumber), orderTime, orderTotal, orderNumber  FROM orders WHERE userId=".$_SESSION['user'] ." GROUP BY orderNumber ORDER BY orderId DESC");
  $result = mysql_query($sql);
 
 
@@ -23,12 +23,15 @@
 <?php
 include'includes/head.php';
 include'includes/navbar.php'; ?>
-
+<!DOCTYPE html>
 <html>
 <body id="body"onload="cartload(); total(); counttr(); isColor();">
  <div id="wrapper">
 
  <div class="container top-buffer-40">
+   <div id="txtHint" class="top-buffer-40">
+
+
         <div class="row">
         <div class="col-lg-12">
         <h1>Min side</h1>
@@ -113,6 +116,7 @@ include'includes/navbar.php'; ?>
         </script>
     </div>
   </div>
+  </div>
 </body>
 </html>
 <script>
@@ -128,6 +132,24 @@ function isColor() {
   }else {
     $("#body").css('background-color','white');}
     document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+}
+
+
+function addToCart(val2){
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      }
+  };
+  xmlhttp.open("GET","addtocart.php?"+val2,true);
+  xmlhttp.send();
+
 }
 </script>
 <?php ob_end_flush(); ?>

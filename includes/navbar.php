@@ -141,7 +141,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <div class="navbar-form" role="search">
-              <div class="input-group">
+              <div id="searchDiv" onclick="if(window.location.pathname !='/index.php'){document.getElementById('searchDiv').href = '/index.php';} "class="input-group">
                 <input id="search"type="text" class="form-control" placeholder="Søk" >
                 <div onclick="search();"class="input-group-btn">
                   <button onclick="search();" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
@@ -157,7 +157,9 @@
           search();
       }});
        function search(){
+
          var q = document.getElementById("search").value;
+
          if (window.XMLHttpRequest) {
              // code for IE7+, Firefox, Chrome, Opera, Safari
              xmlhttp = new XMLHttpRequest();

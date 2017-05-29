@@ -39,7 +39,7 @@ include'includes/navbar.php'; ?>
  <div id="wrapper">
 
  <div class="container top-buffer">
-
+<div class=" top-buffer-40"id="txtHint">
      <div class="page-header"></div>
         <div class="row">
         <div class="col-lg-12">
@@ -114,6 +114,7 @@ include'includes/navbar.php'; ?>
 			</div>
     </div>
     </div>
+  </div>
     <?php
  ?>
 
@@ -189,6 +190,23 @@ function totalc(){
     }else {
       $("#body").css('background-color','white');}
       document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+  }
+
+  function addToCart(val2){
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        }
+    };
+    xmlhttp.open("GET","addtocart.php?"+val2,true);
+    xmlhttp.send();
+
   }
 
 </script>

@@ -22,6 +22,9 @@ include'includes/navbar.php'; ?>
 <body id="body"onload="cartload(); total(); isColor();">
   <div id="wrapper">
     <div class="container top-buffer-30">
+      <div id="txtHint" class="top-buffer-40">
+
+
       <div class="page-header">
         <h1><?php echo $product["productName"]?></h1>
       </div>
@@ -44,10 +47,7 @@ include'includes/navbar.php'; ?>
                       if (r == true) {
                       var php_var = "<?php echo $product["productID"] ?>";
                         window.location.replace('delete.php?'+ php_var);
-                      } else {
-                        txt = "You pressed Cancel!";
                       }
-                      document.getElementById("demo").innerHTML = txt;
                     }
                     </script>
                     <h5 style="font-size:20px">
@@ -148,11 +148,12 @@ include'includes/navbar.php'; ?>
 
                     </div>
                 </div>
-	</div>
-</div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </body>
 </html>
@@ -180,6 +181,44 @@ function isColor() {
   }else {
     $("#body").css('background-color','white');}
     document.getElementById("onoff").innerHTML = localStorage.getItem("color");
+}
+
+
+function search(){
+
+  var q = document.getElementById("search").value;
+
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+  };
+  xmlhttp.open("GET","search.php?q="+q,true);
+  xmlhttp.send();
+}
+
+function addToCart(val2){
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      }
+  };
+  xmlhttp.open("GET","addtocart.php?"+val2,true);
+  xmlhttp.send();
+
 }
 </script>
 <?php ob_end_flush(); ?>

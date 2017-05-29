@@ -96,7 +96,8 @@ if (file_exists($target_file)) {
 </head>
 <body id="body" onload="isColor();">
 
-<div class="container top-buffer-60">
+<div class="container top-buffer-40">
+  <div id="txtHint" class="top-buffer-40">
   <hr />
   <?php    if ( isset($errMSG) ) {
 
@@ -211,6 +212,7 @@ if (file_exists($target_file)) {
     </div>
     </div>
     <hr>
+    </div>
 </div>
 </body>
 </html>
@@ -224,5 +226,44 @@ function isColor() {
     document.getElementById("onoff").innerHTML = localStorage.getItem("color");
 }
 
+
+
+
+function search(){
+
+  var q = document.getElementById("search").value;
+
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+  };
+  xmlhttp.open("GET","search.php?q="+q,true);
+  xmlhttp.send();
+}
+
+function addToCart(val2){
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      }
+  };
+  xmlhttp.open("GET","addtocart.php?"+val2,true);
+  xmlhttp.send();
+
+}
 </script>
 <?php ob_end_flush(); ?>
