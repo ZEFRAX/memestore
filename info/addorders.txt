@@ -5,4 +5,3 @@ CREATE TABLE IF NOT EXISTS `order` (
   `productPriceAt` int(50) NOT NULL,
   `orderTotal` int(50) NOT NULL
   PRIMARY KEY (`orderID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-orderTotal
