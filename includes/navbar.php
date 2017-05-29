@@ -63,8 +63,8 @@
               };
               xmlhttp.open("GET","deletefromcart.php?"+val,true);
               xmlhttp.send();
-
             }
+
             function getSum(total, num) {
               return total + num;
             }
@@ -136,20 +136,41 @@
           </ul>
         </li>
       </ul>
+
       <div class="col-sm-6 col-md-3" style="float: right;">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <form class="navbar-form" role="search">
+            <div class="navbar-form" role="search">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Søk" name="q">
-                <div class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <input id="search"type="text" class="form-control" placeholder="Søk" >
+                <div onclick="search();"class="input-group-btn">
+                  <button onclick="search();" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
               </div>
-            </form>
+            </div>
           </li>
        </ul>
        </div>
+       <script>
+       function search(){
+         var q = document.getElementById("search").value;
+         if (window.XMLHttpRequest) {
+             // code for IE7+, Firefox, Chrome, Opera, Safari
+             xmlhttp = new XMLHttpRequest();
+         } else {
+             // code for IE6, IE5
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+         xmlhttp.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+               document.getElementById("txtHint").innerHTML = this.responseText;
+             }
+         };
+         xmlhttp.open("GET","search.php?q="+q,true);
+         xmlhttp.send();
+       }
+       </script>
+
        </div><!--/.nav-collapse -->
      </div>
    </nav>
