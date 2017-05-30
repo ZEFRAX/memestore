@@ -120,8 +120,15 @@ include'includes/navbar.php'; ?>
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                       <h6 class="title-price"><small>Tags</small></h6>
-                      <span class="label label-default">Default Label</span>
-                      <span class="label label-default">Default Label</span>
+                      <?php
+                      $tags = $product['productTag'];
+                      $extags = explode(",", $tags);
+
+                      foreach ($extags as $id) {
+                         ?><span class="label label-primary"><?php echo $id; ?></span>&nbsp;<?php
+                      }
+                       ?>
+
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                       <h6 class="title-price"><small>Time Created:  <?php echo $product['productTime'] ?></small></h6>

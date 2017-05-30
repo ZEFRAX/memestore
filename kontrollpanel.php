@@ -132,7 +132,7 @@ if (file_exists($target_file)) {
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
-                <input type="text" name="productTag" class="form-control" placeholder="Tag" maxlength="50" required value="<?php echo $productTag ?>" />
+                <input type="text" name="productTag" class="form-control" placeholder="Separer Tags med komma" maxlength="50" required value="<?php echo $productTag ?>" />
                 </div>
                 <span class="text-danger"><?php echo $productTagError; ?></span>
             </div>
