@@ -92,7 +92,7 @@ include'includes/navbar.php'; ?>
       </div>
       <div id="settings" class="collapse panel-body">
         <div class="">
-                  <button onclick="changecolor();" type="button" name="button">Click me</button><span id="onoff"> Hello?</span>
+                  <button onclick="changecolor();" type="button" name="button">Bytt farge</button><span id="onoff"> Hello?</span>
 
         </div>
 

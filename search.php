@@ -5,7 +5,7 @@ $q = str_replace("/search.php?q=","",$q);
 $va = str_replace('20', '', $q);
 $va = str_replace('%', '|', $va);
 
-  $dfg = "SELECT * FROM products WHERE productName REGEXP '".$va."' ORDER BY productID DESC";
+  $dfg = "SELECT * FROM products WHERE CONCAT(productName, productTag) REGEXP '".$va."' ORDER BY productID DESC";
   $asd = mysql_query($dfg);
   if (mysql_num_rows($asd) > 0) {
     $i=0;
@@ -108,8 +108,8 @@ $va = str_replace('%', '|', $va);
                       </div>
                   </div>
               </div>
-         <p class='bottom-align-stars'>;
-        <?php echo $additionalClass2;?><?php
+         <p class='bottom-align-stars'>
+        <?php echo $additionalClass2;
     }
   }else {
     echo "Beklager ingen resultater. Prøv og endre søke ord.";

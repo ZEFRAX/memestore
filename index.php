@@ -19,15 +19,16 @@ include'includes/head.php';
 include'includes/navbar.php'; ?>
 <body id="body"onload="load(); cartload(); isColor();">
   <div id="wrapper">
-    <div class="container top-buffer-40">
-      <div class="row">
+    <div class=" container top-buffer-40">
+      <div class="">
         <div class="col-lg-12">
-          <h1>High quality memes</h1>
+          <h1 >High quality memes</h1>
         </div>
       </div>
-      <div class="container">
+      <div class="">
         <div id="txtHint"></div>
         <div id="txtHint2"></div>
+    </div>
     </div>
   </div>
 </body>
