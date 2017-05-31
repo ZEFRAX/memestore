@@ -79,7 +79,17 @@ include_once'includes/navbar.php'; ?>
                while($porow = mysql_fetch_assoc($result2)) {?>
 
                  <tr class="tr" onclick="document.location='site.php?<?php echo $porow ["productID"] ?>'" style="cursor:hand" >
-                   <td ><img style="max-height: 70px; max-width: 140px;"src="<?php echo $porow ['productImage']; ?>" alt=""></th>
+                   <td ><?php
+                   			$target_file = $porow["productImage"];
+                   			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                   			if ($imageFileType == "mp4" || $imageFileType == "webm") {
+                          echo "<video style='max-height: 70px; max-width: 140px;' loop muted src='".$porow["productImage"]."'autoplay poster='posterimage.jpg'></video>";
+                   		   }
+                   				else {
+                   				echo "<img style='max-height: 70px; max-width: 140px;' src='". $porow["productImage"] ."'class='img-responsive' alt='a' />";
+                   			}
+                   					?></td>
                      <td ><?php echo $porow ['productName']; ?></td>
                    <td ><?php echo date_format( new DateTime($porow['orderTime']), 'd-m-Y H:i' )?></td>
                    <td ><?php echo $porow ['productID']; ?></td>

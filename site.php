@@ -33,7 +33,20 @@ include'includes/navbar.php'; ?>
           <div class="container">
 	<div class="row">
    <div class="col-xs-4 item-photo">
-                    <img style="max-width:100%;" src="<?php echo $product["productImage"] ?>" />
+
+                    <?php
+                    $target_file = $product["productImage"];
+                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                    if ($imageFileType == "mp4" || $imageFileType == "webm") {
+
+                      echo "<video style='width:100%' loop muted src='".$product["productImage"]."'autoplay poster='posterimage.jpg'></video>";
+                  }
+                    else {
+                    echo "<img style=''src='". $product["productImage"] ."'class='img-responsive' alt='a' />";
+                  }
+                     ?>
+
                 </div>
                 <div class="col-xs-5" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
@@ -110,7 +123,7 @@ include'includes/navbar.php'; ?>
 
                     <!-- Precios -->
                     <h6 class="title-price"><small>Pris</small></h6>
-                    <h3 style="margin-top:0px;"><?php echo $product["productPrice"] ?>.- NOK</h3>
+                    <h3 style="margin-top:0px;"><?php echo $product["productPrice"] ?>,- NOK</h3>
                     <div class="section" style="padding-bottom:20px;">
                     </div>
 

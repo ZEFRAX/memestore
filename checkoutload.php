@@ -13,7 +13,19 @@ $sql=mysql_query( "SELECT * FROM products WHERE productID = ".$id);
 
 <div id="<?php echo $r['productID']; ?>1">
      <div  class=" row ">
-       <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-2"><img style=" max-height:80px;" class="img-responsive" src="<?php echo $r['productImage']; ?>">
+       <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-2">
+				 				<?php
+			 			                     $target_file = $r["productImage"];
+			 			                     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+			 			                     if ($imageFileType == "mp4" || $imageFileType == "webm") {
+
+			 			                       echo "<video style='max-height:100px;' loop muted src='".$r["productImage"]."'autoplay poster='posterimage.jpg'></video>";
+			 			                   }
+			 			                     else {
+			 			                     echo "<img src='". $r["productImage"] ."'class='img-responsive' alt='a' />";
+			 			                   }
+			 			     ?>
        </div>
        <div onclick="document.location='site.php?<?php echo $r['productID']; ?>'" style="cursor:hand" class="col-xs-4">
          <h4 class="product-name"><strong><?php echo $r['productName']; ?></strong></h4><h4><small><?php echo $r['productDesc']; ?></small></h4>

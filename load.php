@@ -23,8 +23,20 @@ if (mysql_num_rows($result) > 0) {
                 <div class="col-item">
                   <a href="site.php?<?php echo $row["productID"] ?>">
                     <div style="width:100%; max-height: 300px; overflow:auto;"class="photo">
-                        <img style="  "src="<?php echo $row["productImage"] ?>"  class="img-responsive" alt="a" />
+                      <?php
+                      $target_file = $row["productImage"];
+                      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                      if ($imageFileType == "mp4" || $imageFileType == "webm") {
+                        echo "<video style='width:100%' loop muted src='".$row["productImage"]."'autoplay poster='posterimage.jpg'></video>";
+                    }
+                      else {
+                      echo "<img style=''src='". $row["productImage"] ."'class='img-responsive' alt='a' />";
+                    }
+
+                    ?>
                     </div>
+
                     </a>
                     <div class="info">
                         <div class="row">
