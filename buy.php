@@ -10,7 +10,6 @@ $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
 $userRow=mysql_fetch_array($res);
 $userid = $userRow['userId'];
 
-
 $items = $_SESSION['cart'];
 $cartitems = explode(",", $items);
 
