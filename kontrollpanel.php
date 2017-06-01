@@ -54,6 +54,10 @@ if ($userRow['userStat'] != '1') {
   $productActive = strip_tags($productActive);
   $productActive = htmlspecialchars($productActive);
 
+  $productCategory = trim($_POST['productCategory']);
+  $productCategory = strip_tags($productCategory);
+  $productCategory = htmlspecialchars($productCategory);
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -69,7 +73,8 @@ if (file_exists($target_file)) {
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating, productActive) VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating','$productActive')";
+   $query = "INSERT INTO products(productName,productTag, productDesc,productPrice, productStock, productImage, productRating, productActive, productCategory)
+   VALUES('$productName', '$productTag', '$productDesc','$productPrice','$productStock','$target_file','$productRating','$productActive','$productCategory')";
    $res = mysql_query($query);
 
    if ($res && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -197,6 +202,13 @@ if (file_exists($target_file)) {
                 <option value="0">Nei</option>
                 </select>
               </div>
+              <div class="form-group">
+                <label for="sel1">Velg Kategori</label><br>
+                <select name="productCategory" class="form-control" >
+                  <option value="Standard">Standard</option>
+                  <option value="NSFW">NSFW</option>
+                  </select>
+                </div>
             <div class="form-group">
              <hr />
             </div>
@@ -220,10 +232,8 @@ if (file_exists($target_file)) {
 function isColor() {
   if(localStorage.getItem('color') == '0') {
     $("#body").css('background-color','#161616');
-    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
   }else {
     $("#body").css('background-color','white');}
-    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
 }
 
 

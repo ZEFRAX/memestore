@@ -9,4 +9,5 @@ CREATE TABLE IF NOT EXISTS `products` (
   `productRating` DECIMAL(10,0) NOT NULL,
   `productActive` int(1) NOT NULL,
   `productTime` TIMESTAMP NOT NULL,
+  `productCategory` varchar(50) NOT NULL,
   PRIMARY KEY (`productID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
