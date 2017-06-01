@@ -1,5 +1,7 @@
 <?php include'includes/dbConnect.php';
 
+
+
 $sql = "SELECT productID, productImage, productPrice, productName, productDesc, productTime, productRating FROM products WHERE productActive ='1' ORDER BY productID DESC";
 $result = mysql_query($sql);
 if (mysql_num_rows($result) > 0) {
@@ -26,17 +28,13 @@ if (mysql_num_rows($result) > 0) {
                       <?php
                       $target_file = $row["productImage"];
                       $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
                       if ($imageFileType == "mp4" || $imageFileType == "webm") {
-                        echo "<video style='width:100%' loop muted src='".$row["productImage"]."'autoplay poster='posterimage.jpg'></video>";
+                        echo "<video style='width:100%' loop muted src='".$row["productImage"]."'autoplay ></video>";
                     }
                       else {
                       echo "<img style=''src='". $row["productImage"] ."'class='img-responsive' alt='a' />";
-                    }
-
-                    ?>
+                    }?>
                     </div>
-
                     </a>
                     <div class="info">
                         <div class="row">

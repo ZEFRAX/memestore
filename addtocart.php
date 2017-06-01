@@ -2,7 +2,6 @@
 	session_start();
 $items = $_SESSION['cart'];
 $cartitems = explode(",", $items);
-
 $url = "$_SERVER[REQUEST_URI]";
 $url = str_replace("/addtocart.php?","",$url);
 echo $url;

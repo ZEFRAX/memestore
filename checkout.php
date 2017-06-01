@@ -185,11 +185,8 @@ function totalc(){
       $(".panel-footer").css('background-color','#222');
       $("#border").css('border','#9d9d9d');
       $(".hr").css('color','#9d9d9d');
-
-      document.getElementById("onoff").innerHTML = localStorage.getItem("color");
     }else {
       $("#body").css('background-color','white');}
-      document.getElementById("onoff").innerHTML = localStorage.getItem("color");
   }
 
   function addToCart(val2){

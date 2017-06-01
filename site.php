@@ -191,10 +191,8 @@ function addToCart(val2){
 function isColor() {
   if(localStorage.getItem('color') == '0') {
     $("#body").css('background-color','#161616');
-    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
   }else {
     $("#body").css('background-color','white');}
-    document.getElementById("onoff").innerHTML = localStorage.getItem("color");
 }
 
 
